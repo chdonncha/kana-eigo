@@ -7,6 +7,9 @@
     <li>
       <a href="#about-the-project">About The Project</a>
     </li>
+        <li>
+      <a href="#installation">Installation</a>
+    </li>
     <li>
       <a href="#wireframes">Wireframes</a>
     </li>
@@ -16,6 +19,20 @@
 <!-- ABOUT THE PROJECT -->
 # About The Project
 Web application to challenge users to translate Japanese Katakana loan words back directly to English to improve Katakana proficiency and teach users how many English that is used in plain site in Japanese
+
+# Installation
+
+Install dependencies:
+
+`npm install`
+
+Build project:
+
+`npm build`
+
+Serve on localhost:
+
+`npm start`
 
 # Wireframes
 
