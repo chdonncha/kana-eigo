@@ -7,7 +7,11 @@
     <li>
       <a href="#about-the-project">About The Project</a>
     </li>
-        <li>
+    </li>
+      <li>
+        <a href="#built-with">Built With</a>
+      </li>
+    <li>
       <a href="#installation">Installation</a>
     </li>
     <li>
@@ -19,6 +23,11 @@
 <!-- ABOUT THE PROJECT -->
 # About The Project
 Web application to challenge users to translate Japanese Katakana loan words back directly to English to improve Katakana proficiency and teach users how many English that is used in plain site in Japanese
+
+# Built With
+
+- React
+- React Bootstrap
 
 # Installation
 
