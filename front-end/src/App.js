@@ -4,6 +4,7 @@ import ErrorPage from "./pages/ErrorPage";
 import KanaQuiz from "./pages/KanaQuiz";
 import Home from "./pages/Home";
 import NavbarComponent from "./components/NavbarComponent";
+import FooterComponent from "./components/FooterComponent";
 import React from "react";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                     <Route path="*" element={<ErrorPage/>}/>
                 </Routes>
             </Router>
+            <FooterComponent />
         </>
     );
 }
