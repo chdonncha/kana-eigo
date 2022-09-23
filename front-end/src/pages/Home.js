@@ -82,7 +82,7 @@ function Home() {
             <div className="mt-5 mb-5  container">
                 <div className="row text-center">
                     <div className="col">
-                        <button type="button" className="btn btn-primary">Take Quiz</button>
+                        <a href="/kanaquiz" ><button  type="button" className="btn btn-primary">Take Quiz</button></a>
                     </div>
                 </div>
             </div>
