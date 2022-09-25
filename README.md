@@ -15,6 +15,9 @@
       <a href="#installation">Installation</a>
     </li>
     <li>
+      <a href="#future-features">Future Features</a>
+    </li>
+    <li>
       <a href="#wireframes">Wireframes</a>
     </li>
   </ol>
@@ -45,8 +48,8 @@ Serve on localhost:
 
 # Future Features
 
-- [] - Hiragana + Katakana character quiz (in order and randomised order)
-- [] - Simple Hiragana word quiz
+- [ ] - Hiragana + Katakana character quiz (in order and randomised order)
+- [ ] - Simple Hiragana word quiz
 
 # Wireframes
 
