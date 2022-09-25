@@ -17,7 +17,7 @@ function KanaQuiz() {
             </Row>
             <Row>
                 <Col>
-                    <input className="p-2 bg-light border mt-3"></input>
+                    <input className="bg-light border mt-3"></input>
                 </Col>
             </Row>
             <Row>
