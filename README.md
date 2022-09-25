@@ -43,6 +43,11 @@ Serve on localhost:
 
 `npm start`
 
+# Future Features
+
+- [] - Hiragana + Katakana character quiz (in order and randomised order)
+- [] - Simple Hiragana word quiz
+
 # Wireframes
 
 attempting the questions page example:
