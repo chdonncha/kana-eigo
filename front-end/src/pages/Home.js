@@ -12,7 +12,7 @@ function Home() {
                 <div className="row">
                     <div className="col">
                         <h1 className="text-center">
-                            KanaEigo - カナ英語
+                            Kana-Eigo - カナ英語
                         </h1>
                     </div>
                 </div>
