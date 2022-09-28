@@ -3,7 +3,9 @@ import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
 
 function KanaQuiz() {
+    let getValue;
     var question = "マクドナルド";
+    var randKey = "";
 
     const [data,setData]=useState([]);
     const getData=()=>{
@@ -16,35 +18,27 @@ function KanaQuiz() {
             }
         )
             .then(function(response){
-                console.log(response)
+                // console.log(response)
                 return response.json();
             })
             .then(function(myJson) {
-                console.log(myJson);
+                // console.log(myJson);
                 setData(myJson)
             });
     }
     useEffect(()=>{
         getData()
-    },[]);
+    },[])
 
-    console.log(data);
-    //
-    // var randomProperty = function (data) {
-    //     console.log(data);
-    //     var keys = Object.keys(data);
-    //     return data[keys[keys.length * Math.random() << 0]];
-    // };
+    if (data.length > 0) {
+        // Generate random index based on number of keys
+        const randIndex = Math.floor(Math.random() * data.length)
 
-    const dataItemToKeyValues = (data) => {
-        const entries = Object.entries(data);
-        const listItems = entries.map(([key, value]) => (
-            <li>
-                {key}: {value}
-            </li>
-        ));
-        return <ul>{listItems}</ul>;
-    };
+        // Select a key from the array of keys using the random index
+        randKey = data[randIndex]
+
+        getValue = JSON.stringify(Object.values(randKey));
+    }
 
     return (
         <Container fluid="md" className="text-center mt-5">
@@ -56,11 +50,7 @@ function KanaQuiz() {
             <Row>
                 <Col>
                     <h3 className="mt-5">
-                        {
-                            data.map((item) => (
-                                    <li>{dataItemToKeyValues(item)}</li>
-                                ))
-                        }
+                        {getValue}
                     </h3>
                 </Col>
             </Row>
@@ -79,5 +69,21 @@ function KanaQuiz() {
     )
 }
 
+
+// may be implemented at a later date
+
+// const dataItemToKeyValues = (data) => {
+//     const entries = Object.entries(data);
+//     const listItems = entries.map(([key, value]) => (
+//         <li>
+//             {key}: {value}
+//         </li>
+//     ));
+//     return <ul>{listItems}</ul>;
+// };
+//
+// const value = data.map((item) => (
+//     dataItemToKeyValues(item)
+// ))
 
 export default KanaQuiz;
