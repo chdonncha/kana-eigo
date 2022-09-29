@@ -42,7 +42,18 @@ function KanaQuiz() {
             // Select a key from the array of keys using the random index
             randKey = data[randIndex]
 
-            setCurrentKana(JSON.stringify(Object.values(randKey)));
+            // setCurrentKana(JSON.stringify(Object.values(randKey)));
+
+            var kana = (Object.values(randKey));
+
+            kana = kana.map(function(e){
+                return JSON.stringify(e);
+            });
+
+            kana = kana.toString();
+            kana = kana.replace(/['"]+/g, '');
+
+            setCurrentKana(kana);
         }
     }
 
