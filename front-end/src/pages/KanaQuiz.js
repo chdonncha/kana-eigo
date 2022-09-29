@@ -3,13 +3,8 @@ import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
 
 function KanaQuiz() {
-    let getValue;
     const [data, setData] = useState([]);
     var [currentKana, setCurrentKana] = useState([]);
-
-    // this.state = {
-    //     value: '',
-    // };
 
     const getData = () => {
         fetch('KanaEngData.json'
@@ -33,7 +28,9 @@ function KanaQuiz() {
         getData()
     }, [])
 
-    // getRandKana(data, setCurrentKana);
+    if (currentKana.length === 0) {
+        getRandKana(data, setCurrentKana);
+    }
 
     function getRandKana(data) {
         let randKey;
@@ -45,13 +42,7 @@ function KanaQuiz() {
             // Select a key from the array of keys using the random index
             randKey = data[randIndex]
 
-            // this.state = {
-            //     value: JSON.stringify(Object.values(randKey)),
-            // };
-
             setCurrentKana(JSON.stringify(Object.values(randKey)));
-
-            // return JSON.stringify(Object.values(randKey));
         }
     }
 
