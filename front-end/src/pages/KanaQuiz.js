@@ -4,40 +4,55 @@ import {Col, Row} from "react-bootstrap";
 
 function KanaQuiz() {
     let getValue;
-    var question = "マクドナルド";
-    var randKey = "";
+    const [data, setData] = useState([]);
+    var [currentKana, setCurrentKana] = useState([]);
 
-    const [data,setData]=useState([]);
-    const getData=()=>{
+    // this.state = {
+    //     value: '',
+    // };
+
+    const getData = () => {
         fetch('KanaEngData.json'
-            ,{
-                headers : {
+            , {
+                headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
             }
         )
-            .then(function(response){
+            .then(function (response) {
                 // console.log(response)
                 return response.json();
             })
-            .then(function(myJson) {
+            .then(function (myJson) {
                 // console.log(myJson);
                 setData(myJson)
             });
     }
-    useEffect(()=>{
+    useEffect(() => {
         getData()
-    },[])
+    }, [])
 
-    if (data.length > 0) {
-        // Generate random index based on number of keys
-        const randIndex = Math.floor(Math.random() * data.length)
+    // getRandKana(data, setCurrentKana);
 
-        // Select a key from the array of keys using the random index
-        randKey = data[randIndex]
+    function getRandKana(data) {
+        let randKey;
 
-        getValue = JSON.stringify(Object.values(randKey));
+        if (data.length > 0) {
+            // Generate random index based on number of keys
+            const randIndex = Math.floor(Math.random() * data.length)
+
+            // Select a key from the array of keys using the random index
+            randKey = data[randIndex]
+
+            // this.state = {
+            //     value: JSON.stringify(Object.values(randKey)),
+            // };
+
+            setCurrentKana(JSON.stringify(Object.values(randKey)));
+
+            // return JSON.stringify(Object.values(randKey));
+        }
     }
 
     return (
@@ -50,7 +65,9 @@ function KanaQuiz() {
             <Row>
                 <Col>
                     <h3 className="mt-5">
-                        {getValue}
+                        {/*{this.state.value}*/}
+                        {/*{getValue}*/}
+                        {currentKana}
                     </h3>
                 </Col>
             </Row>
@@ -61,14 +78,13 @@ function KanaQuiz() {
             </Row>
             <Row>
                 <Col>
-                    <button className="mt-3">Submit Answer</button>
+                    <button className="mt-3" onClick={event => getRandKana(data)}>Submit Answer</button>
                 </Col>
             </Row>
             <div className='mb-5'></div>
         </Container>
     )
 }
-
 
 // may be implemented at a later date
 
