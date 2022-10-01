@@ -4,7 +4,15 @@ import {Col, Row} from "react-bootstrap";
 
 function KanaQuiz() {
     const [data, setData] = useState([]);
-    var [currentKana, setCurrentKana] = useState([]);
+    const [currentKana, setCurrentKana] = useState([]);
+    const [score, setScore] = useState(() => {
+        return 0;
+    });
+
+    // TODO: implement scoring
+    // increment score on success
+
+    // setCount(setCurrentScore -> setCurrentScore + 1)
 
     const getData = () => {
         fetch('KanaEngData.json'
@@ -52,7 +60,13 @@ function KanaQuiz() {
             kana = kana.replace(/['"]+/g, '');
 
             setCurrentKana(kana);
+
+
         }
+    }
+
+    function processScore() {
+        setScore(prevScore => prevScore + 1)
     }
 
     return (
@@ -93,7 +107,12 @@ function KanaQuiz() {
             </Row>
             <Row>
                 <Col>
-                    <button className="mt-3" onClick={event => getRandKana(data)}>Submit Answer</button>
+                    <button className="mt-3" onClick={event => {getRandKana(data); processScore()}}>Submit Answer</button>
+                </Col>
+            </Row>
+            <Row className="mt-3">
+                <Col>
+                    Current Score: {score}
                 </Col>
             </Row>
             <div className='mb-5'></div>
