@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
+import {clear} from "@testing-library/user-event/dist/clear";
 
 function KanaQuiz() {
     const [data, setData] = useState([]);
+    const [randKanaObj, setRandKanaObj] = useState([]);
     const [currentKana, setCurrentKana] = useState([]);
     const [score, setScore] = useState(() => {
         return 0;
@@ -39,18 +41,19 @@ function KanaQuiz() {
     }
 
     function getRandKana(data) {
-        let randKey;
-
+        let randObj;
         if (data.length > 0) {
+
             // Generate random index based on number of keys
             const randIndex = Math.floor(Math.random() * data.length)
 
             // Select a key from the array of keys using the random index
-            randKey = data[randIndex]
+            randObj = data[randIndex]
+
+            console.log(randObj);
 
             // setCurrentKana(JSON.stringify(Object.values(randKey)));
-
-            var kana = (Object.values(randKey));
+            let kana = (Object.values(randObj));
 
             kana = kana.map(function (e) {
                 return JSON.stringify(e);
@@ -60,13 +63,35 @@ function KanaQuiz() {
             kana = kana.replace(/['"]+/g, '');
 
             setCurrentKana(kana);
-
-
+            setRandKanaObj(randObj);
         }
     }
 
     function processScore() {
-        setScore(prevScore => prevScore + 1)
+        // TODO: set to ignore word casing
+        // TODO: fix that words with space don't work on scoring
+
+        console.log(randKanaObj);
+        let input = document.getElementById("answer")
+        let value = input.value
+        let eng = Object.keys(randKanaObj);
+
+        eng = eng.map(function (e) {
+            return JSON.stringify(e);
+        });
+
+        eng = eng.toString();
+        eng = eng.replace(/['"]+/g, '');
+
+        if (eng === value) {
+            setScore(prevScore => prevScore + 1)
+        }
+
+        clearInput();
+    }
+
+    function clearInput() {
+        document.getElementById("answer").value = "";
     }
 
     return (
@@ -94,20 +119,23 @@ function KanaQuiz() {
             <Row>
                 <Col>
                     <h3 className="mt-5">
-                        {/*{this.state.value}*/}
-                        {/*{getValue}*/}
                         {currentKana}
                     </h3>
                 </Col>
             </Row>
+            {/* TODO: fix after introducing form, there is a tiny lag for each load of a kana where before there wasn't will forego using a form for the moment */}
             <Row>
                 <Col>
-                    <input className="bg-light border mt-3"></input>
+                    <input id="answer" type="text" name="answer" className="bg-light border mt-3"></input>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <button className="mt-3" onClick={event => {getRandKana(data); processScore()}}>Submit Answer</button>
+                    <button className="mt-3" onClick={event => {
+                        processScore();
+                        getRandKana(data);
+                    }}>Submit Answer
+                    </button>
                 </Col>
             </Row>
             <Row className="mt-3">
