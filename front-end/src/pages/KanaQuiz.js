@@ -1,20 +1,18 @@
 import React, {useEffect, useState} from "react";
 import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert';
 import {clear} from "@testing-library/user-event/dist/clear";
 
 function KanaQuiz() {
     const [data, setData] = useState([]);
     const [randKanaObj, setRandKanaObj] = useState([]);
     const [currentKana, setCurrentKana] = useState([]);
+    const [showCorrect, setShowCorrect] = useState(false);
+    const [showIncorrect, setShowIncorrect] = useState(false);
     const [score, setScore] = useState(() => {
         return 0;
     });
-
-    // TODO: implement scoring
-    // increment score on success
-
-    // setCount(setCurrentScore -> setCurrentScore + 1)
 
     const getData = () => {
         fetch('KanaEngData.json'
@@ -40,6 +38,7 @@ function KanaQuiz() {
         getRandKana(data, setCurrentKana);
     }
 
+    //TODO: Have Text fade in and out every time an answer is submitted
     function getRandKana(data) {
         let randObj;
         if (data.length > 0) {
@@ -72,7 +71,7 @@ function KanaQuiz() {
         // TODO: fix that words with space don't work on scoring
 
         console.log(randKanaObj);
-        let input = document.getElementById("answer")
+        let input = document.getElementById("inputAnswer")
         let value = input.value
         let eng = Object.keys(randKanaObj);
 
@@ -84,18 +83,30 @@ function KanaQuiz() {
         eng = eng.replace(/['"]+/g, '');
 
         if (eng === value) {
+            setShowCorrect(true);
+            setShowIncorrect(false);
             setScore(prevScore => prevScore + 1)
+        } else {
+            setShowCorrect(false);
+            setShowIncorrect(true);
         }
+
 
         clearInput();
     }
 
     function clearInput() {
-        document.getElementById("answer").value = "";
+        document.getElementById("inputAnswer").value = "";
     }
 
     return (
         <Container fluid="md" className="text-center mt-5">
+            <Row>
+                <Col>
+                    <Alert show={showCorrect} onClose={() => setShowCorrect(false)} dismissible variant="success">Correct!</Alert>
+                    <Alert show={showIncorrect} onClose={() => setShowIncorrect(false)} dismissible variant="danger">Incorrect Answer!</Alert>
+                </Col>
+            </Row>
             <Row>
                 <Col>
                     <h3>Translate Katakana to English</h3>
@@ -126,12 +137,12 @@ function KanaQuiz() {
             {/* TODO: fix after introducing form, there is a tiny lag for each load of a kana where before there wasn't will forego using a form for the moment */}
             <Row>
                 <Col>
-                    <input id="answer" type="text" name="answer" className="bg-light border mt-3"></input>
+                    <input id="inputAnswer" type="text" name="inputAnswer" className="bg-light border mt-3"></input>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <button className="mt-3" onClick={event => {
+                    <button id="submitAnswer" className="mt-3" onClick={event => {
                         processScore();
                         getRandKana(data);
                     }}>Submit Answer
