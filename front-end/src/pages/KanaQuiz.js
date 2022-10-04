@@ -2,15 +2,19 @@ import React, {useEffect, useState} from "react";
 import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
-import {clear} from "@testing-library/user-event/dist/clear";
 
 function KanaQuiz() {
     const [data, setData] = useState([]);
     const [randKanaObj, setRandKanaObj] = useState([]);
+    //TODO: Consider creating a service to handle alert messages
     const [currentKana, setCurrentKana] = useState([]);
     const [showCorrect, setShowCorrect] = useState(false);
     const [showIncorrect, setShowIncorrect] = useState(false);
+    const [showEmptyInput, setShowEmptyInput] = useState(false);
     const [score, setScore] = useState(() => {
+        return 0;
+    });
+    const [totalSubmits, setTotalSubmits] = useState(() => {
         return 0;
     });
 
@@ -45,13 +49,11 @@ function KanaQuiz() {
 
             // Generate random index based on number of keys
             const randIndex = Math.floor(Math.random() * data.length)
-
             // Select a key from the array of keys using the random index
             randObj = data[randIndex]
 
             console.log(randObj);
 
-            // setCurrentKana(JSON.stringify(Object.values(randKey)));
             let kana = (Object.values(randObj));
 
             kana = kana.map(function (e) {
@@ -69,30 +71,39 @@ function KanaQuiz() {
     function processScore() {
         // TODO: set to ignore word casing
         // TODO: fix that words with space don't work on scoring
-
-        console.log(randKanaObj);
+        // TODO: Check to use DOM or State for best handling of Input data
+        // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
         let input = document.getElementById("inputAnswer")
-        let value = input.value
-        let eng = Object.keys(randKanaObj);
+        console.log(input.value);
 
-        eng = eng.map(function (e) {
-            return JSON.stringify(e);
-        });
+        if (input.value.length > 0) {
+            console.log("input detected");
+            // console.log(randKanaObj);
 
-        eng = eng.toString();
-        eng = eng.replace(/['"]+/g, '');
+            let value = input.value
+            let eng = Object.keys(randKanaObj);
 
-        if (eng === value) {
-            setShowCorrect(true);
-            setShowIncorrect(false);
-            setScore(prevScore => prevScore + 1)
-        } else {
-            setShowCorrect(false);
-            setShowIncorrect(true);
+            eng = eng.map(function (e) {
+                return JSON.stringify(e);
+            });
+
+            eng = eng.toString();
+            eng = eng.replace(/['"]+/g, '');
+
+            if (eng === value) {
+                setShowCorrect(true);
+                setShowIncorrect(false);
+                setScore(prevScore => prevScore + 1)
+            } else {
+                setShowCorrect(false);
+                setShowIncorrect(true);
+                setTotalSubmits(prevScore => prevScore + 1)
+            }
+            setShowEmptyInput(false);
+            clearInput();
         }
-
-
-        clearInput();
+        setShowEmptyInput(true);
+        console.log("no input");
     }
 
     function clearInput() {
@@ -103,8 +114,10 @@ function KanaQuiz() {
         <Container fluid="md" className="text-center mt-5">
             <Row>
                 <Col>
-                    <Alert show={showCorrect} onClose={() => setShowCorrect(false)} dismissible variant="success">Correct!</Alert>
-                    <Alert show={showIncorrect} onClose={() => setShowIncorrect(false)} dismissible variant="danger">Incorrect Answer!</Alert>
+                    <Alert show={showCorrect} onClose={() => setShowCorrect(false)} dismissible
+                           variant="success">Correct!</Alert>
+                    <Alert show={showIncorrect} onClose={() => setShowIncorrect(false)} dismissible variant="danger">Incorrect
+                        Answer!</Alert>
                 </Col>
             </Row>
             <Row>
@@ -137,6 +150,8 @@ function KanaQuiz() {
             {/* TODO: fix after introducing form, there is a tiny lag for each load of a kana where before there wasn't will forego using a form for the moment */}
             <Row>
                 <Col>
+                    <Alert show={showEmptyInput} onClose={() => setShowEmptyInput(false)} dismissible variant="danger">Cannot
+                        leave input empty</Alert>
                     <input id="inputAnswer" type="text" name="inputAnswer" className="bg-light border mt-3"></input>
                 </Col>
             </Row>
@@ -154,6 +169,21 @@ function KanaQuiz() {
                     Current Score: {score}
                 </Col>
             </Row>
+            <Row>
+                <Col>
+                    Questions Left: {totalSubmits} / 20
+                </Col>
+            </Row>
+            {totalSubmits === 20
+                ? <Row>
+                    <Col>
+                        <p>Congratulations You have completed the Quiz</p>
+                        <p>Your Total Score is: {score} / 20</p>
+                        <button>Play Again?</button>
+                    </Col>
+                </Row>
+                : null
+            }
             <div className='mb-5'></div>
         </Container>
     )
