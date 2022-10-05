@@ -73,6 +73,7 @@ function KanaQuiz() {
         // TODO: fix that words with space don't work on scoring
         // TODO: Check to use DOM or State for best handling of Input data
         // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
+        // TODO: prevent repeated words showing up until reset
         let input = document.getElementById("inputAnswer")
         console.log(input.value);
 
@@ -101,9 +102,14 @@ function KanaQuiz() {
             }
             setShowEmptyInput(false);
             clearInput();
+        } else {
+            setShowEmptyInput(true);
+            console.log("no input");
         }
-        setShowEmptyInput(true);
-        console.log("no input");
+    }
+
+    function reset() {
+        console.log("hello there");
     }
 
     function clearInput() {
@@ -112,78 +118,87 @@ function KanaQuiz() {
 
     return (
         <Container fluid="md" className="text-center mt-5">
-            <Row>
-                <Col>
-                    <Alert show={showCorrect} onClose={() => setShowCorrect(false)} dismissible
-                           variant="success">Correct!</Alert>
-                    <Alert show={showIncorrect} onClose={() => setShowIncorrect(false)} dismissible variant="danger">Incorrect
-                        Answer!</Alert>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <h3>Translate Katakana to English</h3>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>
-                        The purpose of this exercise is to build up confidence in understanding Katakana
-                        based on guessing the given word through reading the Katakana and making sense of it.
-                    </p>
-                    <p>
-                        Reducing the need to remember words like you would in Hiragana and being able to
-                        read based just purely off the Katakana alone.
-                    </p>
-                    <p>
-                        E.g. スーパーマーケット = Sūpāmāketto = supermarket
-                    </p>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <h3 className="mt-5">
-                        {currentKana}
-                    </h3>
-                </Col>
-            </Row>
-            {/* TODO: fix after introducing form, there is a tiny lag for each load of a kana where before there wasn't will forego using a form for the moment */}
-            <Row>
-                <Col>
-                    <Alert show={showEmptyInput} onClose={() => setShowEmptyInput(false)} dismissible variant="danger">Cannot
-                        leave input empty</Alert>
-                    <input id="inputAnswer" type="text" name="inputAnswer" className="bg-light border mt-3"></input>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <button id="submitAnswer" className="mt-3" onClick={event => {
-                        processScore();
-                        getRandKana(data);
-                    }}>Submit Answer
-                    </button>
-                </Col>
-            </Row>
-            <Row className="mt-3">
-                <Col>
-                    Current Score: {score}
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    Questions Left: {totalSubmits} / 20
-                </Col>
-            </Row>
-            {totalSubmits === 20
-                ? <Row>
+            {totalSubmits !== 20
+                ? <div>
+                    <Row>
+                        <Col>
+                            <h3>Translate Katakana to English</h3>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <p>
+                                The purpose of this exercise is to build up confidence in understanding Katakana
+                                based on guessing the given word through reading the Katakana and making sense of it.
+                            </p>
+                            <p>
+                                Reducing the need to remember words like you would in Hiragana and being able to
+                                read based just purely off the Katakana alone.
+                            </p>
+                            <p>
+                                E.g. スーパーマーケット = Sūpāmāketto = supermarket
+                            </p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h3 className="mt-5">
+                                {currentKana}
+                            </h3>
+                        </Col>
+                    </Row>
+                    {/* TODO: fix after introducing form, there is a tiny lag for each load of a kana where before there wasn't will forego using a form for the moment */}
+                    <Row>
+                        <Col>
+                            <Alert show={showEmptyInput} onClose={() => setShowEmptyInput(false)} dismissible
+                                   variant="danger">
+                                Cannot leave input empty
+                            </Alert>
+                            <Alert show={showCorrect} onClose={() => setShowCorrect(false)} dismissible
+                                   variant="success">
+                                Correct!
+                            </Alert>
+                            <Alert show={showIncorrect} onClose={() => setShowIncorrect(false)} dismissible
+                                   variant="danger">
+                                Incorrect Answer!
+                            </Alert>
+                            <input id="inputAnswer" type="text" name="inputAnswer"
+                                   className="bg-light border mt-3">
+                            </input>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <button id="submitAnswer" className="mt-3" onClick={event => {
+                                processScore();
+                                getRandKana(data);
+                            }}>Submit Answer
+                            </button>
+                        </Col>
+                    </Row>
+                    <Row className="mt-3">
+                        <Col>
+                            Current Score: {score}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            Questions Left: {totalSubmits} / 20
+                        </Col>
+                    </Row>
+                </div>
+                : <Row>
                     <Col>
                         <p>Congratulations You have completed the Quiz</p>
                         <p>Your Total Score is: {score} / 20</p>
-                        <button>Play Again?</button>
+                        <button className="mt-3" onClick={event => {
+                            reset();
+                        }}>Play Again?
+                        </button>
                     </Col>
                 </Row>
-                : null
             }
+
             <div className='mb-5'></div>
         </Container>
     )
