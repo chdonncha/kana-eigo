@@ -69,11 +69,10 @@ function KanaQuiz() {
     }
 
     function processScore() {
-        // TODO: set to ignore word casing
         // TODO: fix that words with space don't work on scoring
-        // TODO: Check to use DOM or State for best handling of Input data
         // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
         // TODO: prevent repeated words showing up until reset
+        // TODO: prevent predictive text dropdown
         let input = document.getElementById("inputAnswer")
         console.log(input.value);
 
@@ -91,7 +90,7 @@ function KanaQuiz() {
             eng = eng.toString();
             eng = eng.replace(/['"]+/g, '');
 
-            if (eng === value) {
+            if (eng.toLowerCase() === value.toLowerCase()) {
                 setShowCorrect(true);
                 setShowIncorrect(false);
                 setScore(prevScore => prevScore + 1)
