@@ -94,6 +94,7 @@ function KanaQuiz() {
                 setShowCorrect(true);
                 setShowIncorrect(false);
                 setScore(prevScore => prevScore + 1)
+                setTotalSubmits(prevScore => prevScore + 1)
             } else {
                 setShowCorrect(false);
                 setShowIncorrect(true);
