@@ -52,8 +52,9 @@ function KanaQuiz() {
             // Select a key from the array of keys using the random index
             randObj = data[randIndex]
 
-            let kana = getKeyPairValue(Object.values(randObj));
+            console.log(randObj);
 
+            let kana = getKeyPairValue(Object.values(randObj));
             setCurrentKana(kana);
             setRandKanaObj(randObj);
         }
@@ -74,13 +75,12 @@ function KanaQuiz() {
             if (eng.toLowerCase() === inputValue.toLowerCase()) {
                 handleCorrectAnswer();
             } else {
-                handleIncCorrectAnswer();
+                handleInCorrectAnswer();
             }
-            setShowEmptyInput(false);
+            handleShowEmpty(false);
             clearInput();
         } else {
-            setShowEmptyInput(true);
-            console.log("no input");
+            handleShowEmpty(true);
         }
     }
 
@@ -94,6 +94,14 @@ function KanaQuiz() {
         return objVal;
     }
 
+    function handleShowEmpty(boolean) {
+        setShowEmptyInput(boolean);
+        if (boolean === true) {
+            setShowIncorrect(false);
+            setShowCorrect(false);
+        }
+    }
+
     function handleCorrectAnswer() {
         setShowCorrect(true);
         setShowIncorrect(false);
@@ -101,7 +109,7 @@ function KanaQuiz() {
         setTotalSubmits(prevScore => prevScore + 1)
     }
 
-    function handleIncCorrectAnswer() {
+    function handleInCorrectAnswer() {
         setShowCorrect(false);
         setShowIncorrect(true);
         setTotalSubmits(prevScore => prevScore + 1)
@@ -202,21 +210,5 @@ function KanaQuiz() {
         </Container>
     )
 }
-
-// may be implemented at a later date
-
-// const dataItemToKeyValues = (data) => {
-//     const entries = Object.entries(data);
-//     const listItems = entries.map(([key, value]) => (
-//         <li>
-//             {key}: {value}
-//         </li>
-//     ));
-//     return <ul>{listItems}</ul>;
-// };
-//
-// const value = data.map((item) => (
-//     dataItemToKeyValues(item)
-// ))
 
 export default KanaQuiz;
