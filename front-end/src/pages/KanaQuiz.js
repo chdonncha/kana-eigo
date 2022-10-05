@@ -52,16 +52,7 @@ function KanaQuiz() {
             // Select a key from the array of keys using the random index
             randObj = data[randIndex]
 
-            console.log(randObj);
-
-            let kana = (Object.values(randObj));
-
-            kana = kana.map(function (e) {
-                return JSON.stringify(e);
-            });
-
-            kana = kana.toString();
-            kana = kana.replace(/['"]+/g, '');
+            let kana = getKeyPairValue(Object.values(randObj));
 
             setCurrentKana(kana);
             setRandKanaObj(randObj);
@@ -69,7 +60,6 @@ function KanaQuiz() {
     }
 
     function processScore() {
-        // TODO: fix that words with space don't work on scoring
         // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
         // TODO: prevent repeated words showing up until reset
         // TODO: prevent predictive text dropdown
@@ -78,27 +68,13 @@ function KanaQuiz() {
 
         if (input.value.length > 0) {
             console.log("input detected");
-            // console.log(randKanaObj);
+            let inputValue = input.value
+            let eng = getKeyPairValue(Object.keys(randKanaObj));
 
-            let value = input.value
-            let eng = Object.keys(randKanaObj);
-
-            eng = eng.map(function (e) {
-                return JSON.stringify(e);
-            });
-
-            eng = eng.toString();
-            eng = eng.replace(/['"]+/g, '');
-
-            if (eng.toLowerCase() === value.toLowerCase()) {
-                setShowCorrect(true);
-                setShowIncorrect(false);
-                setScore(prevScore => prevScore + 1)
-                setTotalSubmits(prevScore => prevScore + 1)
+            if (eng.toLowerCase() === inputValue.toLowerCase()) {
+                handleCorrectAnswer();
             } else {
-                setShowCorrect(false);
-                setShowIncorrect(true);
-                setTotalSubmits(prevScore => prevScore + 1)
+                handleIncCorrectAnswer();
             }
             setShowEmptyInput(false);
             clearInput();
@@ -106,6 +82,29 @@ function KanaQuiz() {
             setShowEmptyInput(true);
             console.log("no input");
         }
+    }
+
+    function getKeyPairValue(objVal) {
+
+        objVal = objVal.map(function (e) {
+            return JSON.stringify(e);
+        });
+
+        objVal = objVal.toString().replace(/['"]+/g, '');
+        return objVal;
+    }
+
+    function handleCorrectAnswer() {
+        setShowCorrect(true);
+        setShowIncorrect(false);
+        setScore(prevScore => prevScore + 1)
+        setTotalSubmits(prevScore => prevScore + 1)
+    }
+
+    function handleIncCorrectAnswer() {
+        setShowCorrect(false);
+        setShowIncorrect(true);
+        setTotalSubmits(prevScore => prevScore + 1)
     }
 
     function reset() {
