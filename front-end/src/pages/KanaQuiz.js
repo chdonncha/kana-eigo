@@ -44,23 +44,23 @@ function KanaQuiz() {
 
     //TODO: Have Text fade in and out every time an answer is submitted
     function getRandKana(data) {
-        let randObj;
-        if (data.length > 0) {
+            let randObj;
+            if (data.length > 0) {
 
-            // Generate random index based on number of keys
-            const randIndex = Math.floor(Math.random() * data.length)
-            // Select a key from the array of keys using the random index
-            randObj = data[randIndex]
+                // Generate random index based on number of keys
+                const randIndex = Math.floor(Math.random() * data.length)
+                // Select a key from the array of keys using the random index
+                randObj = data[randIndex]
 
-            console.log(randObj);
+                console.log(randObj);
 
-            let kana = getKeyPairValue(Object.values(randObj));
-            setCurrentKana(kana);
-            setRandKanaObj(randObj);
+                let kana = getKeyPairValue(Object.values(randObj));
+                setCurrentKana(kana);
+                setRandKanaObj(randObj);
         }
     }
 
-    function processScore() {
+    function processScore(data) {
         // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
         // TODO: prevent repeated words showing up until reset
         // TODO: prevent predictive text dropdown
@@ -79,7 +79,9 @@ function KanaQuiz() {
             }
             handleShowEmpty(false);
             clearInput();
+            getRandKana(data);
         } else {
+            console.log("empty input");
             handleShowEmpty(true);
         }
     }
@@ -177,8 +179,7 @@ function KanaQuiz() {
                     <Row>
                         <Col>
                             <button id="submitAnswer" className="mt-3" onClick={event => {
-                                processScore();
-                                getRandKana(data);
+                                processScore(data);
                             }}>Submit Answer
                             </button>
                         </Col>
