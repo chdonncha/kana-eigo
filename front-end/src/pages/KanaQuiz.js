@@ -18,6 +18,14 @@ function KanaQuiz() {
         return 0;
     });
 
+    // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
+    // TODO: prevent repeated words showing up until reset
+    // TODO: prevent predictive text dropdown
+    // TODO: make enter key default to submit when typing
+    // TODO: prevent alert pushing button down (have padding there but alert hidden)
+    // TODO: add option to play timed version
+    // TODO: add a "give up" button which will show total score and percent correct
+
     const getData = () => {
         fetch('KanaEngData.json'
             , {
@@ -44,26 +52,23 @@ function KanaQuiz() {
 
     //TODO: Have Text fade in and out every time an answer is submitted
     function getRandKana(data) {
-            let randObj;
-            if (data.length > 0) {
+        let randObj;
+        if (data.length > 0) {
 
-                // Generate random index based on number of keys
-                const randIndex = Math.floor(Math.random() * data.length)
-                // Select a key from the array of keys using the random index
-                randObj = data[randIndex]
+            // Generate random index based on number of keys
+            const randIndex = Math.floor(Math.random() * data.length)
+            // Select a key from the array of keys using the random index
+            randObj = data[randIndex]
 
-                console.log(randObj);
+            console.log(randObj);
 
-                let kana = getKeyPairValue(Object.values(randObj));
-                setCurrentKana(kana);
-                setRandKanaObj(randObj);
+            let kana = getKeyPairValue(Object.values(randObj));
+            setCurrentKana(kana);
+            setRandKanaObj(randObj);
         }
     }
 
-    function processScore(data) {
-        // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
-        // TODO: prevent repeated words showing up until reset
-        // TODO: prevent predictive text dropdown
+    function processSubmit(data) {
         let input = document.getElementById("inputAnswer")
         console.log(input.value);
 
@@ -87,7 +92,6 @@ function KanaQuiz() {
     }
 
     function getKeyPairValue(objVal) {
-
         objVal = objVal.map(function (e) {
             return JSON.stringify(e);
         });
@@ -118,7 +122,11 @@ function KanaQuiz() {
     }
 
     function reset() {
-        console.log("hello there");
+        setTotalSubmits(0);
+        setScore(0);
+        setShowCorrect(false);
+        setShowIncorrect(false);
+        setShowEmptyInput(false);
     }
 
     function clearInput() {
@@ -179,7 +187,7 @@ function KanaQuiz() {
                     <Row>
                         <Col>
                             <button id="submitAnswer" className="mt-3" onClick={event => {
-                                processScore(data);
+                                processSubmit(data);
                             }}>Submit Answer
                             </button>
                         </Col>
@@ -206,7 +214,6 @@ function KanaQuiz() {
                     </Col>
                 </Row>
             }
-
             <div className='mb-5'></div>
         </Container>
     )
