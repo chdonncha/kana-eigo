@@ -180,7 +180,7 @@ function KanaQuiz() {
                                 Incorrect Answer!
                             </Alert>
                             <input id="inputAnswer" type="text" name="inputAnswer"
-                                   className="bg-light border mt-3">
+                                   className="bg-light border mt-3" autoComplete="off">
                             </input>
                         </Col>
                     </Row>
