@@ -20,7 +20,6 @@ function KanaQuiz() {
 
     // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
     // TODO: prevent repeated words showing up until reset
-    // TODO: prevent predictive text dropdown
     // TODO: make enter key default to submit when typing
     // TODO: prevent alert pushing button down (have padding there but alert hidden)
     // TODO: add option to play timed version

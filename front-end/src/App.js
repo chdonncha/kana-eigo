@@ -10,15 +10,17 @@ import React from "react";
 function App() {
     return (
         <>
-            <Router>
-                <NavbarComponent />
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/kanaquiz" element={<KanaQuiz/>}/>
-                    <Route path="*" element={<ErrorPage/>}/>
-                </Routes>
-            </Router>
-            <FooterComponent />
+            <div className="flex-wrapper">
+                <Router>
+                    <NavbarComponent/>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/kanaquiz" element={<KanaQuiz/>}/>
+                        <Route path="*" element={<ErrorPage/>}/>
+                    </Routes>
+                </Router>
+                <FooterComponent/>
+            </div>
         </>
     );
 }
