@@ -24,6 +24,7 @@ function KanaQuiz() {
   // TODO: prevent alert pushing button down (have padding there but alert hidden)
   // TODO: add option to play timed version
   // TODO: add a "give up" button which will show total score and percent correct
+  // TODO: add a skip button
 
   const getData = () => {
     fetch('KanaEngData.json', {
