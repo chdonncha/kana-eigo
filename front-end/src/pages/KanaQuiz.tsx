@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from 'react-bootstrap/Container';
-import { Col, Row } from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 
 function KanaQuiz() {
@@ -49,7 +49,7 @@ function KanaQuiz() {
   }
 
   //TODO: Have Text fade in and out every time an answer is submitted
-  function getRandKana(data) {
+  function getRandKana(data: any, setCurrentKana: any) {
     let randObj;
     if (data.length > 0) {
       // Generate random index based on number of keys
@@ -65,8 +65,8 @@ function KanaQuiz() {
     }
   }
 
-  function processSubmit(data) {
-    let input = document.getElementById('inputAnswer');
+  function processSubmit(data: any) {
+    let input = (document.getElementById('inputAnswer') as HTMLInputElement);
     console.log(input.value);
 
     if (input.value.length > 0) {
@@ -81,15 +81,15 @@ function KanaQuiz() {
       }
       handleShowEmpty(false);
       clearInput();
-      getRandKana(data);
+      getRandKana(data, setCurrentKana);
     } else {
       console.log('empty input');
       handleShowEmpty(true);
     }
   }
 
-  function getKeyPairValue(objVal) {
-    objVal = objVal.map(function (e) {
+  function getKeyPairValue(objVal: any) {
+    objVal = objVal.map(function (e: any) {
       return JSON.stringify(e);
     });
 
@@ -97,7 +97,7 @@ function KanaQuiz() {
     return objVal;
   }
 
-  function handleShowEmpty(boolean) {
+  function handleShowEmpty(boolean: any) {
     setShowEmptyInput(boolean);
     if (boolean === true) {
       setShowIncorrect(false);
@@ -127,7 +127,7 @@ function KanaQuiz() {
   }
 
   function clearInput() {
-    document.getElementById('inputAnswer').value = '';
+    (document.getElementById('inputAnswer') as HTMLInputElement).value = '';
   }
 
   return (
