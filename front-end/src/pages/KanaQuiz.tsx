@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import Container from 'react-bootstrap/Container';
-import {Col, Row} from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Col, Row } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 function KanaQuiz() {
   const [data, setData] = useState([]);
@@ -66,7 +66,7 @@ function KanaQuiz() {
   }
 
   function processSubmit(data: any) {
-    let input = (document.getElementById('inputAnswer') as HTMLInputElement);
+    let input = document.getElementById('inputAnswer') as HTMLInputElement;
     console.log(input.value);
 
     if (input.value.length > 0) {
@@ -108,14 +108,14 @@ function KanaQuiz() {
   function handleCorrectAnswer() {
     setShowCorrect(true);
     setShowIncorrect(false);
-    setScore(prevScore => prevScore + 1);
-    setTotalSubmits(prevScore => prevScore + 1);
+    setScore((prevScore) => prevScore + 1);
+    setTotalSubmits((prevScore) => prevScore + 1);
   }
 
   function handleInCorrectAnswer() {
     setShowCorrect(false);
     setShowIncorrect(true);
-    setTotalSubmits(prevScore => prevScore + 1);
+    setTotalSubmits((prevScore) => prevScore + 1);
   }
 
   function reset() {
@@ -142,13 +142,12 @@ function KanaQuiz() {
           <Row>
             <Col>
               <p>
-                The purpose of this exercise is to build up confidence in
-                understanding Katakana based on guessing the given word through
-                reading the Katakana and making sense of it.
+                The purpose of this exercise is to build up confidence in understanding Katakana based on guessing the
+                given word through reading the Katakana and making sense of it.
               </p>
               <p>
-                Reducing the need to remember words like you would in Hiragana
-                and being able to read based just purely off the Katakana alone.
+                Reducing the need to remember words like you would in Hiragana and being able to read based just purely
+                off the Katakana alone.
               </p>
               <p>E.g. スーパーマーケット = Sūpāmāketto = supermarket</p>
             </Col>
@@ -161,28 +160,13 @@ function KanaQuiz() {
           {/* TODO: fix after introducing form, there is a tiny lag for each load of a kana where before there wasn't will forego using a form for the moment */}
           <Row>
             <Col>
-              <Alert
-                show={showEmptyInput}
-                onClose={() => setShowEmptyInput(false)}
-                dismissible
-                variant="danger"
-              >
+              <Alert show={showEmptyInput} onClose={() => setShowEmptyInput(false)} dismissible variant="danger">
                 Cannot leave input empty
               </Alert>
-              <Alert
-                show={showCorrect}
-                onClose={() => setShowCorrect(false)}
-                dismissible
-                variant="success"
-              >
+              <Alert show={showCorrect} onClose={() => setShowCorrect(false)} dismissible variant="success">
                 Correct!
               </Alert>
-              <Alert
-                show={showIncorrect}
-                onClose={() => setShowIncorrect(false)}
-                dismissible
-                variant="danger"
-              >
+              <Alert show={showIncorrect} onClose={() => setShowIncorrect(false)} dismissible variant="danger">
                 Incorrect Answer!
               </Alert>
               <input
@@ -199,7 +183,7 @@ function KanaQuiz() {
               <button
                 id="submitAnswer"
                 className="mt-3"
-                onClick={event => {
+                onClick={(event) => {
                   processSubmit(data);
                 }}
               >
@@ -221,7 +205,7 @@ function KanaQuiz() {
             <p>Your Total Score is: {score} / 20</p>
             <button
               className="mt-3"
-              onClick={event => {
+              onClick={(event) => {
                 reset();
               }}
             >
