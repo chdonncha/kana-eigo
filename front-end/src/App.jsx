@@ -1,15 +1,16 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ErrorPage from './pages/ErrorPage';
-import KanaQuiz from './pages/KanaQuiz';
-import Home from './pages/Home';
-import NavbarComponent from './components/NavbarComponent';
-import FooterComponent from './components/FooterComponent';
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { FooterComponent } from './components/FooterComponent';
+import { NavbarComponent } from './components/NavbarComponent';
+import { ErrorPage } from './pages/ErrorPage';
+import { Home } from './pages/Home';
+import { KanaQuiz } from './pages/KanaQuiz';
 
 // TODO: Convert app to use typescript
 
-function App() {
+export const App = () => {
   return (
     <>
       <div className="flex-wrapper">
@@ -25,6 +26,4 @@ function App() {
       </div>
     </>
   );
-}
-
-export default App;
+};

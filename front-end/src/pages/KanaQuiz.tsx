@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 
-function KanaQuiz() {
+export const KanaQuiz = () => {
   const [data, setData] = useState([]);
   const [randKanaObj, setRandKanaObj] = useState([]);
   //TODO: Consider creating a service to handle alert messages
@@ -217,6 +217,4 @@ function KanaQuiz() {
       <div className="mb-5"></div>
     </Container>
   );
-}
-
-export default KanaQuiz;
+};
