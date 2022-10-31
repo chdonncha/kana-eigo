@@ -25,6 +25,8 @@ export const KanaQuiz = () => {
   // TODO: add option to play timed version
   // TODO: add a "give up" button which will show total score and percent correct
   // TODO: add a skip button
+  // TODO: pick quiz from category e.g. food, directions, locations etc..
+  // TODO: add reverse translation quiz
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -65,7 +67,7 @@ export const KanaQuiz = () => {
     }
   }
 
-  function processSubmit(data: any) {
+  function processAnswer(data: any) {
     let input = document.getElementById('inputAnswer') as HTMLInputElement;
     console.log(input.value);
 
@@ -118,6 +120,7 @@ export const KanaQuiz = () => {
     setTotalSubmits((prevScore) => prevScore + 1);
   }
 
+  // TODO: have it cycle another new kana after pressing reset
   function reset() {
     setTotalSubmits(0);
     setScore(0);
@@ -184,10 +187,19 @@ export const KanaQuiz = () => {
                 id="submitAnswer"
                 className="mt-3"
                 onClick={(event) => {
-                  processSubmit(data);
+                  processAnswer(data);
                 }}
               >
                 Submit Answer
+              </button>
+              <button
+                id="giveUp"
+                className="mt-3"
+                onClick={(event) => {
+                  reset();
+                }}
+              >
+                Give Up
               </button>
             </Col>
           </Row>
