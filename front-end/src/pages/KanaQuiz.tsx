@@ -133,6 +133,23 @@ export const KanaQuiz = () => {
     (document.getElementById('inputAnswer') as HTMLInputElement).value = '';
   }
 
+  function skip(data: any) {
+    let input = document.getElementById('inputAnswer') as HTMLInputElement;
+    console.log(input.value);
+
+    let inputValue = input.value;
+    let eng = getKeyPairValue(Object.keys(randKanaObj));
+
+    if (eng.toLowerCase() === inputValue.toLowerCase()) {
+      handleCorrectAnswer();
+    } else {
+      handleInCorrectAnswer();
+    }
+    handleShowEmpty(false);
+    clearInput();
+    getRandKana(data, setCurrentKana);
+  }
+
   return (
     <Container fluid="md" className="text-center mt-5">
       {totalSubmits !== 20 ? (
@@ -200,6 +217,15 @@ export const KanaQuiz = () => {
                 }}
               >
                 Give Up
+              </button>
+              <button
+                id="giveUp"
+                className="mt-3"
+                onClick={(event) => {
+                  skip(data);
+                }}
+              >
+                Skip
               </button>
             </Col>
           </Row>
