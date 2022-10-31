@@ -127,6 +127,7 @@ export const KanaQuiz = () => {
     setShowCorrect(false);
     setShowIncorrect(false);
     setShowEmptyInput(false);
+    skip(data);
   }
 
   function clearInput() {
