@@ -27,6 +27,7 @@ export const KanaQuiz = () => {
   // TODO: add a skip button
   // TODO: pick quiz from category e.g. food, directions, locations etc..
   // TODO: add reverse translation quiz
+  // TODO: allow user to pick how long they want the quiz to be before starting
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -67,6 +68,7 @@ export const KanaQuiz = () => {
     }
   }
 
+  // TODO: refactor to include skip function
   function processAnswer(data: any) {
     let input = document.getElementById('inputAnswer') as HTMLInputElement;
     console.log(input.value);
@@ -127,14 +129,14 @@ export const KanaQuiz = () => {
     setShowCorrect(false);
     setShowIncorrect(false);
     setShowEmptyInput(false);
-    skip(data);
+    nextKana(data);
   }
 
   function clearInput() {
     (document.getElementById('inputAnswer') as HTMLInputElement).value = '';
   }
 
-  function skip(data: any) {
+  function nextKana(data: any) {
     let input = document.getElementById('inputAnswer') as HTMLInputElement;
     console.log(input.value);
 
@@ -223,7 +225,7 @@ export const KanaQuiz = () => {
                 id="giveUp"
                 className="mt-3"
                 onClick={(event) => {
-                  skip(data);
+                  nextKana(data);
                 }}
               >
                 Skip
