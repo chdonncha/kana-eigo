@@ -23,11 +23,10 @@ export const KanaQuiz = () => {
   // TODO: make enter key default to submit when typing
   // TODO: prevent alert pushing button down (have padding there but alert hidden)
   // TODO: add option to play timed version
-  // TODO: add a "give up" button which will show total score and percent correct
-  // TODO: add a skip button
   // TODO: pick quiz from category e.g. food, directions, locations etc..
   // TODO: add reverse translation quiz
   // TODO: allow user to pick how long they want the quiz to be before starting
+  // TODO: score screen with percent, word display and tally on give up or completion
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -68,10 +67,8 @@ export const KanaQuiz = () => {
     }
   }
 
-  // TODO: refactor to include skip function
   function processAnswer(data: any) {
     let input = document.getElementById('inputAnswer') as HTMLInputElement;
-    console.log(input.value);
 
     if (input.value.length > 0) {
       nextKana(data);
@@ -125,14 +122,20 @@ export const KanaQuiz = () => {
     (document.getElementById('inputAnswer') as HTMLInputElement).value = '';
   }
 
-  function nextKana(data: any) {
+  function checkCorrect() {
     let input = document.getElementById('inputAnswer') as HTMLInputElement;
-    console.log(input.value);
 
     let inputValue = input.value;
     let eng = getKeyPairValue(Object.keys(randKanaObj));
 
     if (eng.toLowerCase() === inputValue.toLowerCase()) {
+      return true;
+    }
+    return false;
+  }
+
+  function nextKana(data: any) {
+    if (checkCorrect()) {
       handleCorrectAnswer();
     } else {
       handleInCorrectAnswer();
