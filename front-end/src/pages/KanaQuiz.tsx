@@ -74,20 +74,9 @@ export const KanaQuiz = () => {
     console.log(input.value);
 
     if (input.value.length > 0) {
-      console.log('input detected');
-      let inputValue = input.value;
-      let eng = getKeyPairValue(Object.keys(randKanaObj));
-
-      if (eng.toLowerCase() === inputValue.toLowerCase()) {
-        handleCorrectAnswer();
-      } else {
-        handleInCorrectAnswer();
-      }
-      handleShowEmpty(false);
-      clearInput();
-      getRandKana(data, setCurrentKana);
+      nextKana(data);
     } else {
-      console.log('empty input');
+      // empty submit
       handleShowEmpty(true);
     }
   }
