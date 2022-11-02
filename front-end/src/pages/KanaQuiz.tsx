@@ -89,11 +89,7 @@ export const KanaQuiz = () => {
 
   function processAnswer(data: any) {
     if (inputAnswerElement.value.length > 0) {
-      if (checkCorrect()) {
-        handleCorrectAnswer();
-      } else {
-        handleInCorrectAnswer();
-      }
+      checkCorrect() ? handleCorrectAnswer() : handleInCorrectAnswer();
       messageHelper(null, null, false);
       clearInput();
       getRandKana(data, setCurrentKana);
