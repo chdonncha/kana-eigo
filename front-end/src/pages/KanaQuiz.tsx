@@ -79,7 +79,7 @@ export const KanaQuiz = () => {
 
   function processAnswer(data: any) {
     if (inputAnswerElement.value.length > 0) {
-      getNextKana(data);
+      verifyAnswer(data);
     } else {
       messageHelper(false, false, true);
     }
@@ -95,7 +95,7 @@ export const KanaQuiz = () => {
     return false;
   }
 
-  function getNextKana(data: any) {
+  function verifyAnswer(data: any) {
     if (checkCorrect()) {
       handleCorrectAnswer();
     } else {
@@ -127,8 +127,8 @@ export const KanaQuiz = () => {
   function reset() {
     setTotalSubmits(0);
     setScore(0);
-    messageHelper(false, false, false);
-    getNextKana(data);
+    clearAllMessages();
+    getRandKana(data, setCurrentKana);
   }
 
   function messageHelper(Correct: any, Incorrect: any, EmptyInput: any) {
