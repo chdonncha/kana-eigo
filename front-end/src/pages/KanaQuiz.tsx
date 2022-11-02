@@ -17,6 +17,7 @@ export const KanaQuiz = () => {
   const [totalSubmits, setTotalSubmits] = useState(() => {
     return 0;
   });
+  const inputAnswerElement = document.getElementById('inputAnswer') as HTMLInputElement;
 
   // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
   // TODO: prevent repeated words showing up until reset
@@ -67,17 +68,6 @@ export const KanaQuiz = () => {
     }
   }
 
-  function processAnswer(data: any) {
-    let input = document.getElementById('inputAnswer') as HTMLInputElement;
-
-    if (input.value.length > 0) {
-      nextKana(data);
-    } else {
-      // empty submit
-      handleShowEmpty(true);
-    }
-  }
-
   function getKeyPairValue(objVal: any) {
     objVal = objVal.map(function (e: any) {
       return JSON.stringify(e);
@@ -87,45 +77,16 @@ export const KanaQuiz = () => {
     return objVal;
   }
 
-  function handleShowEmpty(boolean: any) {
-    setShowEmptyInput(boolean);
-    if (boolean === true) {
-      setShowIncorrect(false);
-      setShowCorrect(false);
+  function processAnswer(data: any) {
+    if (inputAnswerElement.value.length > 0) {
+      nextKana(data);
+    } else {
+      messageHelper(false, false, true);
     }
   }
 
-  function handleCorrectAnswer() {
-    setShowCorrect(true);
-    setShowIncorrect(false);
-    setScore((prevScore) => prevScore + 1);
-    setTotalSubmits((prevScore) => prevScore + 1);
-  }
-
-  function handleInCorrectAnswer() {
-    setShowCorrect(false);
-    setShowIncorrect(true);
-    setTotalSubmits((prevScore) => prevScore + 1);
-  }
-
-  // TODO: have it cycle another new kana after pressing reset
-  function reset() {
-    setTotalSubmits(0);
-    setScore(0);
-    setShowCorrect(false);
-    setShowIncorrect(false);
-    setShowEmptyInput(false);
-    nextKana(data);
-  }
-
-  function clearInput() {
-    (document.getElementById('inputAnswer') as HTMLInputElement).value = '';
-  }
-
   function checkCorrect() {
-    let input = document.getElementById('inputAnswer') as HTMLInputElement;
-
-    let inputValue = input.value;
+    let inputValue = inputAnswerElement.value;
     let eng = getKeyPairValue(Object.keys(randKanaObj));
 
     if (eng.toLowerCase() === inputValue.toLowerCase()) {
@@ -140,9 +101,39 @@ export const KanaQuiz = () => {
     } else {
       handleInCorrectAnswer();
     }
-    handleShowEmpty(false);
+    messageHelper(null, null, false);
     clearInput();
     getRandKana(data, setCurrentKana);
+  }
+
+  function handleCorrectAnswer() {
+    messageHelper(true, false, false);
+    setScore((prevScore) => prevScore + 1);
+    setTotalSubmits((prevScore) => prevScore + 1);
+  }
+
+  function handleInCorrectAnswer() {
+    console.log('test');
+    messageHelper(false, true, false);
+    setTotalSubmits((prevScore) => prevScore + 1);
+  }
+
+  // TODO: have it cycle another new kana after pressing reset
+  function reset() {
+    setTotalSubmits(0);
+    setScore(0);
+    messageHelper(false, false, false);
+    nextKana(data);
+  }
+
+  function messageHelper(Correct: any, Incorrect: any, EmptyInput: any) {
+    if (Correct != null) setShowCorrect(Correct);
+    if (Incorrect != null) setShowIncorrect(Incorrect);
+    if (EmptyInput != null) setShowEmptyInput(EmptyInput);
+  }
+
+  function clearInput() {
+    (document.getElementById('inputAnswer') as HTMLInputElement).value = '';
   }
 
   return (
