@@ -79,7 +79,7 @@ export const KanaQuiz = () => {
 
   function processAnswer(data: any) {
     if (inputAnswerElement.value.length > 0) {
-      nextKana(data);
+      getNextKana(data);
     } else {
       messageHelper(false, false, true);
     }
@@ -95,7 +95,7 @@ export const KanaQuiz = () => {
     return false;
   }
 
-  function nextKana(data: any) {
+  function getNextKana(data: any) {
     if (checkCorrect()) {
       handleCorrectAnswer();
     } else {
@@ -106,6 +106,12 @@ export const KanaQuiz = () => {
     getRandKana(data, setCurrentKana);
   }
 
+  function skipKana(data: any) {
+    clearAllMessages();
+    getRandKana(data, setCurrentKana);
+    setTotalSubmits((prevScore) => prevScore + 1);
+  }
+
   function handleCorrectAnswer() {
     messageHelper(true, false, false);
     setScore((prevScore) => prevScore + 1);
@@ -113,7 +119,6 @@ export const KanaQuiz = () => {
   }
 
   function handleInCorrectAnswer() {
-    console.log('test');
     messageHelper(false, true, false);
     setTotalSubmits((prevScore) => prevScore + 1);
   }
@@ -123,13 +128,17 @@ export const KanaQuiz = () => {
     setTotalSubmits(0);
     setScore(0);
     messageHelper(false, false, false);
-    nextKana(data);
+    getNextKana(data);
   }
 
   function messageHelper(Correct: any, Incorrect: any, EmptyInput: any) {
     if (Correct != null) setShowCorrect(Correct);
     if (Incorrect != null) setShowIncorrect(Incorrect);
     if (EmptyInput != null) setShowEmptyInput(EmptyInput);
+  }
+
+  function clearAllMessages() {
+    messageHelper(false, false, false);
   }
 
   function clearInput() {
@@ -208,7 +217,7 @@ export const KanaQuiz = () => {
                 id="giveUp"
                 className="mt-3"
                 onClick={(event) => {
-                  nextKana(data);
+                  skipKana(data);
                 }}
               >
                 Skip
