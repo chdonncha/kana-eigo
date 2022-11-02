@@ -77,14 +77,6 @@ export const KanaQuiz = () => {
     return objVal;
   }
 
-  function processAnswer(data: any) {
-    if (inputAnswerElement.value.length > 0) {
-      verifyAnswer(data);
-    } else {
-      messageHelper(false, false, true);
-    }
-  }
-
   function checkCorrect() {
     let inputValue = inputAnswerElement.value;
     let eng = getKeyPairValue(Object.keys(randKanaObj));
@@ -95,15 +87,19 @@ export const KanaQuiz = () => {
     return false;
   }
 
-  function verifyAnswer(data: any) {
-    if (checkCorrect()) {
-      handleCorrectAnswer();
+  function processAnswer(data: any) {
+    if (inputAnswerElement.value.length > 0) {
+      if (checkCorrect()) {
+        handleCorrectAnswer();
+      } else {
+        handleInCorrectAnswer();
+      }
+      messageHelper(null, null, false);
+      clearInput();
+      getRandKana(data, setCurrentKana);
     } else {
-      handleInCorrectAnswer();
+      messageHelper(false, false, true);
     }
-    messageHelper(null, null, false);
-    clearInput();
-    getRandKana(data, setCurrentKana);
   }
 
   function skipKana(data: any) {
@@ -123,7 +119,6 @@ export const KanaQuiz = () => {
     setTotalSubmits((prevScore) => prevScore + 1);
   }
 
-  // TODO: have it cycle another new kana after pressing reset
   function reset() {
     setTotalSubmits(0);
     setScore(0);
