@@ -69,12 +69,14 @@ export const KanaQuiz = () => {
   }
 
   function getKeyPairValue(objVal: any) {
-    objVal = objVal.map(function (e: any) {
-      return JSON.stringify(e);
-    });
+    objVal = objVal
+      .toString()
+      .replace(/['"]+/g, '')
+      .map(function (e: any) {
+        return JSON.stringify(e);
+      });
 
-    objVal = objVal.toString().replace(/['"]+/g, '');
-    return objVal;
+    return objVal.toString().replace(/['"]+/g, '');
   }
 
   function checkCorrect() {
