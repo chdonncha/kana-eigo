@@ -80,11 +80,7 @@ export const KanaQuiz = () => {
   function checkCorrect() {
     let inputValue = inputAnswerElement.value;
     let eng = getKeyPairValue(Object.keys(randKanaObj));
-
-    if (eng.toLowerCase() === inputValue.toLowerCase()) {
-      return true;
-    }
-    return false;
+    return eng.toLowerCase() === inputValue.toLowerCase();
   }
 
   function processAnswer(data: any) {
