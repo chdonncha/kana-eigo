@@ -3,6 +3,8 @@ import { Col, Row } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 
+import { Results } from './Results';
+
 export const KanaQuiz = () => {
   const [data, setData] = useState([]);
   const [randKanaObj, setRandKanaObj] = useState([]);
@@ -69,14 +71,12 @@ export const KanaQuiz = () => {
   }
 
   function getKeyPairValue(objVal: any) {
-    objVal = objVal
-      .toString()
-      .replace(/['"]+/g, '')
-      .map(function (e: any) {
-        return JSON.stringify(e);
-      });
+    objVal = objVal.map(function (e: any) {
+      return JSON.stringify(e);
+    });
 
-    return objVal.toString().replace(/['"]+/g, '');
+    objVal = objVal.toString().replace(/['"]+/g, '');
+    return objVal;
   }
 
   function checkCorrect() {
@@ -134,10 +134,12 @@ export const KanaQuiz = () => {
     (document.getElementById('inputAnswer') as HTMLInputElement).value = '';
   }
 
+  // TODO: research into Render Props and disabling the previous prop without relying on IF's
   return (
     <Container fluid="md" className="text-center mt-5">
       {totalSubmits !== 20 ? (
         <div>
+          <Results score={score} />
           <Row>
             <Col>
               <h3>Translate Katakana to English</h3>
