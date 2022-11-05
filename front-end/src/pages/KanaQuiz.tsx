@@ -139,7 +139,6 @@ export const KanaQuiz = () => {
     <Container fluid="md" className="text-center mt-5">
       {totalSubmits !== 20 ? (
         <div>
-          <Results score={score} />
           <Row>
             <Col>
               <h3>Translate Katakana to English</h3>
@@ -223,20 +222,23 @@ export const KanaQuiz = () => {
           </Row>
         </div>
       ) : (
-        <Row>
-          <Col>
-            <p>Congratulations You have completed the Quiz</p>
-            <p>Your Total Score is: {score} / 20</p>
-            <button
-              className="mt-3"
-              onClick={(event) => {
-                reset();
-              }}
-            >
-              Play Again?
-            </button>
-          </Col>
-        </Row>
+        <>
+          <Results score={score} />
+          {/*<Row>*/}
+          {/*  <Col>*/}
+          {/*    <p>Congratulations You have completed the Quiz</p>*/}
+          {/*    <p>Your Total Score is: {score} / 20</p>*/}
+          <button
+            className="mt-3"
+            onClick={(event) => {
+              reset();
+            }}
+          >
+            Play Again?
+          </button>
+          {/*</Col>*/}
+          {/*</Row>*/}
+        </>
       )}
       <div className="mb-5"></div>
     </Container>
