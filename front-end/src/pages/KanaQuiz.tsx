@@ -115,10 +115,8 @@ export const KanaQuiz = () => {
   }
 
   function reset() {
-    setTotalSubmits(0);
-    setScore(0);
-    clearAllMessages();
-    getRandKana(data, setCurrentKana);
+    // set max submits to trigger Results component to be called
+    setTotalSubmits(20);
   }
 
   function messageHelper(Correct: any, Incorrect: any, EmptyInput: any) {
@@ -249,9 +247,7 @@ export const KanaQuiz = () => {
           </Row>
         </div>
       ) : (
-        <>
-          <Results score={score} />
-        </>
+        <Results score={score} />
       )}
       <div className="mb-5"></div>
     </Container>
