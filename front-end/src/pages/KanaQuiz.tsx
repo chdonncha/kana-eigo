@@ -16,7 +16,7 @@ export const KanaQuiz = () => {
   const [score, setScore] = useState(() => {
     return 0;
   });
-  const [totalSubmits, setTotalSubmits] = useState(() => {
+  const [totalAttempts, setTotalAttempts] = useState(() => {
     return 0;
   });
   const inputAnswerElement = document.getElementById('inputAnswer') as HTMLInputElement;
@@ -100,23 +100,23 @@ export const KanaQuiz = () => {
   function skipKana(data: any) {
     clearAllMessages();
     getRandKana(data, setCurrentKana);
-    setTotalSubmits((prevScore) => prevScore + 1);
+    setTotalAttempts((prevScore) => prevScore + 1);
   }
 
   function handleCorrectAnswer() {
     messageHelper(true, false, false);
     setScore((prevScore) => prevScore + 1);
-    setTotalSubmits((prevScore) => prevScore + 1);
+    setTotalAttempts((prevScore) => prevScore + 1);
   }
 
   function handleInCorrectAnswer() {
     messageHelper(false, true, false);
-    setTotalSubmits((prevScore) => prevScore + 1);
+    setTotalAttempts((prevScore) => prevScore + 1);
   }
 
   function reset() {
-    // set max submits to trigger Results component to be called
-    setTotalSubmits(20);
+    // set max attempts to trigger Results component to be called
+    setTotalAttempts(20);
   }
 
   function messageHelper(Correct: any, Incorrect: any, EmptyInput: any) {
@@ -136,7 +136,7 @@ export const KanaQuiz = () => {
   // TODO: research into Render Props and disabling the previous prop without relying on IF's
   return (
     <Container fluid="md" className="text-center mt-5">
-      {totalSubmits !== 20 ? (
+      {totalAttempts !== 20 ? (
         <div>
           <Row>
             <Col>
@@ -243,7 +243,7 @@ export const KanaQuiz = () => {
             <Col>Current Score: {score}</Col>
           </Row>
           <Row>
-            <Col>Questions Left: {totalSubmits} / 20</Col>
+            <Col>Questions Left: {totalAttempts} / 20</Col>
           </Row>
         </div>
       ) : (
