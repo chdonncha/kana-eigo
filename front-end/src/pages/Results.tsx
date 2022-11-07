@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { KanaQuiz } from './KanaQuiz';
 
 export const Results = ({ score }: { score: any }) => {
-  const [showResults, setShowResults] = useState(false);
+  const [showResults, setShowResults] = useState(true);
 
   const handleClick = () => {
     setShowResults((current) => !current);
