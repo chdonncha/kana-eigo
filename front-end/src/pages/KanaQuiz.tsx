@@ -175,7 +175,7 @@ export const KanaQuiz = () => {
                 onClose={() => setShowEmptyInput(false)}
                 dismissible
                 transition={false}
-                variant="danger"
+                variant={'danger'}
               >
                 Cannot leave input empty
               </Alert>
@@ -184,7 +184,7 @@ export const KanaQuiz = () => {
                 onClose={() => setShowCorrect(false)}
                 dismissible
                 transition={false}
-                variant="success"
+                variant={'success'}
               >
                 Correct!
               </Alert>
@@ -193,7 +193,7 @@ export const KanaQuiz = () => {
                 onClose={() => setShowIncorrect(false)}
                 dismissible
                 transition={false}
-                variant="danger"
+                variant={'danger'}
               >
                 Incorrect Answer!
               </Alert>
