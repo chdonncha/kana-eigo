@@ -14,7 +14,7 @@ export const Results = ({ score }: { score: any }) => {
       {showResults && (
         <>
           <h1>Results</h1>
-          <p>Your Score: {score} </p>
+          <p>Your Score: {score} / 20 </p>
           <button onClick={handleClick}>Click</button>
         </>
       )}
