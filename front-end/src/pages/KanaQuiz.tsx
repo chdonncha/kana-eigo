@@ -29,7 +29,8 @@ export const KanaQuiz = () => {
   // TODO: pick quiz from category e.g. food, directions, locations etc..
   // TODO: add reverse translation quiz
   // TODO: allow user to pick how long they want the quiz to be before starting
-  // TODO: score screen with percent, word display and tally on give up or completion// TODO: option to pick from 4 premade answers
+  // TODO: score screen with percent, word display and tally on give up or completion
+  // TODO: option to pick from 4 premade answers
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -162,7 +163,6 @@ export const KanaQuiz = () => {
               <h3 className="mt-5">{currentKana}</h3>
             </Col>
           </Row>
-          {/* TODO: fix after introducing form, there is a tiny lag for each load of a kana where before there wasn't will forego using a form for the moment */}
           <Row>
             <Col className="alert">
               {!showEmptyInput && !showCorrect && !showIncorrect && (
@@ -170,16 +170,33 @@ export const KanaQuiz = () => {
                   .
                 </Alert>
               )}
-              <Alert show={showEmptyInput} onClose={() => setShowEmptyInput(false)} dismissible variant="danger">
+              <Alert
+                show={showEmptyInput}
+                onClose={() => setShowEmptyInput(false)}
+                dismissible
+                transition={false}
+                variant="danger"
+              >
                 Cannot leave input empty
               </Alert>
-              <Alert show={showCorrect} onClose={() => setShowCorrect(false)} dismissible variant="success">
+              <Alert
+                show={showCorrect}
+                onClose={() => setShowCorrect(false)}
+                dismissible
+                transition={false}
+                variant="success"
+              >
                 Correct!
               </Alert>
-              <Alert show={showIncorrect} onClose={() => setShowIncorrect(false)} dismissible variant="danger">
+              <Alert
+                show={showIncorrect}
+                onClose={() => setShowIncorrect(false)}
+                dismissible
+                transition={false}
+                variant="danger"
+              >
                 Incorrect Answer!
               </Alert>
-              {/*<Alert variant="light"></Alert>*/}
             </Col>
           </Row>
           <Row>
