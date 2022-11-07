@@ -224,20 +224,6 @@ export const KanaQuiz = () => {
       ) : (
         <>
           <Results score={score} />
-          {/*<Row>*/}
-          {/*  <Col>*/}
-          {/*    <p>Congratulations You have completed the Quiz</p>*/}
-          {/*    <p>Your Total Score is: {score} / 20</p>*/}
-          <button
-            className="mt-3"
-            onClick={(event) => {
-              reset();
-            }}
-          >
-            Play Again?
-          </button>
-          {/*</Col>*/}
-          {/*</Row>*/}
         </>
       )}
       <div className="mb-5"></div>

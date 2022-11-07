@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
+import { KanaQuiz } from './KanaQuiz';
+
 export const Results = ({ score }: { score: any }) => {
+  const [showResults, setShowResults] = useState(false);
+
+  const handleClick = () => {
+    setShowResults((current) => !current);
+  };
+
   return (
     <div>
-      <h1>Results</h1>
-      <p>Your Score: {score} </p>
-      {/*<button*/}
-      {/*  className="mt-3"*/}
-      {/*  onClick={(event) => {*/}
-      {/*    reset();*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  Play Again?*/}
-      {/*</button>*/}
+      {showResults && (
+        <>
+          <h1>Results</h1>
+          <p>Your Score: {score} </p>
+          <button onClick={handleClick}>Click</button>
+        </>
+      )}
+      {!showResults && <KanaQuiz />}
     </div>
   );
 };
