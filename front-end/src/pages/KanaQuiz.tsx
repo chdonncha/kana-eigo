@@ -29,7 +29,7 @@ export const KanaQuiz = () => {
   // TODO: pick quiz from category e.g. food, directions, locations etc..
   // TODO: add reverse translation quiz
   // TODO: allow user to pick how long they want the quiz to be before starting
-  // TODO: score screen with percent, word display and tally on give up or completion
+  // TODO: score screen with percent, word display and tally on give up or completion// TODO: option to pick from 4 premade answers
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -164,7 +164,12 @@ export const KanaQuiz = () => {
           </Row>
           {/* TODO: fix after introducing form, there is a tiny lag for each load of a kana where before there wasn't will forego using a form for the moment */}
           <Row>
-            <Col>
+            <Col className="alert">
+              {!showEmptyInput && !showCorrect && !showIncorrect && (
+                <Alert variant="light" style={{ opacity: 0 }}>
+                  .
+                </Alert>
+              )}
               <Alert show={showEmptyInput} onClose={() => setShowEmptyInput(false)} dismissible variant="danger">
                 Cannot leave input empty
               </Alert>
@@ -174,6 +179,11 @@ export const KanaQuiz = () => {
               <Alert show={showIncorrect} onClose={() => setShowIncorrect(false)} dismissible variant="danger">
                 Incorrect Answer!
               </Alert>
+              {/*<Alert variant="light"></Alert>*/}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
               <input
                 id="inputAnswer"
                 type="text"
