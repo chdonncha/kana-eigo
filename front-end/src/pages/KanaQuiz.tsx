@@ -3,6 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 
+import { QuizHeader } from './QuizHeader';
 import { Results } from './Results';
 
 export const KanaQuiz = () => {
@@ -137,115 +138,100 @@ export const KanaQuiz = () => {
   return (
     <Container fluid="md" className="text-center mt-5">
       {totalAttempts !== 20 ? (
-        <div>
-          <Row>
-            <Col>
-              <h3>Translate Katakana to English</h3>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <p>
-                The purpose of this exercise is to build up confidence in understanding Katakana based on guessing the
-                given word through reading the Katakana and making sense of it.
-              </p>
-              <p>
-                Reducing the need to remember words like you would in Hiragana and being able to read based just purely
-                off the Katakana alone.
-              </p>
-              <p>E.g. スーパーマーケット = Sūpāmāketto = supermarket</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h3 className="mt-5">{currentKana}</h3>
-            </Col>
-          </Row>
-          <Row>
-            <Col className="alert">
-              {!showEmptyInput && !showCorrect && !showIncorrect && (
-                <Alert variant="light" style={{ opacity: 0 }}>
-                  .
+        <>
+          <QuizHeader />
+          <div>
+            <Row>
+              <Col>
+                <h3 className="mt-5">{currentKana}</h3>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="alert">
+                {!showEmptyInput && !showCorrect && !showIncorrect && (
+                  <Alert variant="light" style={{ opacity: 0 }}>
+                    .
+                  </Alert>
+                )}
+                <Alert
+                  show={showEmptyInput}
+                  onClose={() => setShowEmptyInput(false)}
+                  dismissible
+                  transition={false}
+                  variant={'danger'}
+                >
+                  Cannot leave input empty
                 </Alert>
-              )}
-              <Alert
-                show={showEmptyInput}
-                onClose={() => setShowEmptyInput(false)}
-                dismissible
-                transition={false}
-                variant={'danger'}
-              >
-                Cannot leave input empty
-              </Alert>
-              <Alert
-                show={showCorrect}
-                onClose={() => setShowCorrect(false)}
-                dismissible
-                transition={false}
-                variant={'success'}
-              >
-                Correct!
-              </Alert>
-              <Alert
-                show={showIncorrect}
-                onClose={() => setShowIncorrect(false)}
-                dismissible
-                transition={false}
-                variant={'danger'}
-              >
-                Incorrect Answer!
-              </Alert>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <input
-                id="inputAnswer"
-                type="text"
-                name="inputAnswer"
-                className="bg-light border mt-3"
-                autoComplete="off"
-              ></input>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <button
-                id="submitAnswer"
-                className="mt-3"
-                onClick={(event) => {
-                  processAnswer(data);
-                }}
-              >
-                Submit Answer
-              </button>
-              <button
-                id="giveUp"
-                className="mt-3"
-                onClick={(event) => {
-                  reset();
-                }}
-              >
-                Give Up
-              </button>
-              <button
-                id="giveUp"
-                className="mt-3"
-                onClick={(event) => {
-                  skipKana(data);
-                }}
-              >
-                Skip
-              </button>
-            </Col>
-          </Row>
-          <Row className="mt-3">
-            <Col>Current Score: {score}</Col>
-          </Row>
-          <Row>
-            <Col>Questions Left: {totalAttempts} / 20</Col>
-          </Row>
-        </div>
+                <Alert
+                  show={showCorrect}
+                  onClose={() => setShowCorrect(false)}
+                  dismissible
+                  transition={false}
+                  variant={'success'}
+                >
+                  Correct!
+                </Alert>
+                <Alert
+                  show={showIncorrect}
+                  onClose={() => setShowIncorrect(false)}
+                  dismissible
+                  transition={false}
+                  variant={'danger'}
+                >
+                  Incorrect Answer!
+                </Alert>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <input
+                  id="inputAnswer"
+                  type="text"
+                  name="inputAnswer"
+                  className="bg-light border mt-3"
+                  autoComplete="off"
+                ></input>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <button
+                  id="submitAnswer"
+                  className="mt-3"
+                  onClick={(event) => {
+                    processAnswer(data);
+                  }}
+                >
+                  Submit Answer
+                </button>
+                <button
+                  id="giveUp"
+                  className="mt-3"
+                  onClick={(event) => {
+                    reset();
+                  }}
+                >
+                  Give Up
+                </button>
+                <button
+                  id="giveUp"
+                  className="mt-3"
+                  onClick={(event) => {
+                    skipKana(data);
+                  }}
+                >
+                  Skip
+                </button>
+              </Col>
+            </Row>
+            <Row className="mt-3">
+              <Col>Current Score: {score}</Col>
+            </Row>
+            <Row>
+              <Col>Questions Left: {totalAttempts} / 20</Col>
+            </Row>
+          </div>
+        </>
       ) : (
         <Results score={score} />
       )}

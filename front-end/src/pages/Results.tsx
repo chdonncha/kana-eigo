@@ -9,6 +9,11 @@ export const Results = ({ score }: { score: any }) => {
     setShowResults((current) => !current);
   };
 
+  // TODO: show skipped questions
+  // TODO: show failed questions
+  // TODO: show total correct
+  // TODO: give percent of correct
+
   return (
     <div>
       {showResults && (
