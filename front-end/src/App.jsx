@@ -6,7 +6,7 @@ import { FooterComponent } from './components/FooterComponent';
 import { NavbarComponent } from './components/NavbarComponent';
 import { ErrorPage } from './pages/ErrorPage';
 import { Home } from './pages/Home';
-import { KanaQuiz } from './pages/KanaQuiz';
+import { KanaQuizMenu } from './pages/KanaQuizMenu';
 
 // TODO: Convert app to use typescript
 
@@ -18,7 +18,7 @@ export const App = () => {
           <NavbarComponent />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/kanaquiz" element={<KanaQuiz />} />
+            <Route path="/kanaquiz" element={<KanaQuizMenu />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </Router>
