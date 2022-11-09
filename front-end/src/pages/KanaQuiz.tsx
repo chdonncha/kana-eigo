@@ -31,6 +31,7 @@ export const KanaQuiz = () => {
   // TODO: allow user to pick how long they want the quiz to be before starting
   // TODO: score screen with percent, word display and tally on give up or completion
   // TODO: option to pick from 4 premade answers
+  // TODO: create a customise menu page to select categories and the total question count
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -139,6 +140,11 @@ export const KanaQuiz = () => {
       {totalAttempts !== 20 ? (
         <>
           <div>
+            <Row>
+              <Col>
+                <p>Enter your English translation of the displayed Kana in the Input box below and press Submit</p>
+              </Col>
+            </Row>
             <Row>
               <Col>
                 <h3 className="mt-5">{currentKana}</h3>
