@@ -3,7 +3,6 @@ import { Col, Row } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 
-import { QuizHeader } from './QuizHeader';
 import { Results } from './Results';
 
 export const KanaQuiz = () => {
@@ -139,7 +138,6 @@ export const KanaQuiz = () => {
     <Container fluid="md" className="text-center mt-5">
       {totalAttempts !== 20 ? (
         <>
-          <QuizHeader />
           <div>
             <Row>
               <Col>
