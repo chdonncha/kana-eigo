@@ -3,6 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 
 import { KanaQuiz } from './KanaQuiz';
+import { KanaQuizCustomiseMenu } from './KanaQuizCustomiseMenu';
 import { KanaQuizHeader } from './KanaQuizHeader';
 
 export const KanaQuizMenu = () => {
@@ -25,7 +26,7 @@ export const KanaQuizMenu = () => {
   return (
     <>
       <Container fluid="md" className="text-center mt-5">
-        {quickStartQuiz && (
+        {quickStartQuiz && randomisedQuiz && customisedQuiz && (
           <div>
             <Row>
               <Col>
@@ -48,6 +49,8 @@ export const KanaQuizMenu = () => {
           </div>
         )}
         {!quickStartQuiz && <KanaQuiz />}
+        {!randomisedQuiz && <KanaQuiz />}
+        {!customisedQuiz && <KanaQuizCustomiseMenu />}
       </Container>
     </>
   );
