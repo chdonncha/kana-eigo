@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { Button } from 'react-bootstrap';
+
 import { KanaQuiz } from './KanaQuiz';
 
 export const Results = ({ score }: { score: any }) => {
@@ -20,7 +22,9 @@ export const Results = ({ score }: { score: any }) => {
         <>
           <h1>Results</h1>
           <p>Your Score: {score} / 20 </p>
-          <button onClick={handleClick}>Click</button>
+          <Button variant={'secondary'} onClick={handleClick}>
+            Click
+          </Button>
         </>
       )}
       {!showResults && <KanaQuiz />}
