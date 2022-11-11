@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Button } from 'react-bootstrap';
 
-import { KanaQuiz } from './KanaQuiz';
+import { KanaQuizMenu } from './KanaQuizMenu';
 
 export const Results = ({ score }: { score: any }) => {
   const [showResults, setShowResults] = useState(true);
@@ -27,7 +27,7 @@ export const Results = ({ score }: { score: any }) => {
           </Button>
         </>
       )}
-      {!showResults && <KanaQuiz />}
+      {!showResults && <KanaQuizMenu />}
     </div>
   );
 };
