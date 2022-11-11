@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 
 export const KanaQuizCustomiseMenu = () => {
-  // TODO: setup back button to navigate to main quiz menu
-  // TODO: style buttons as Back = bootstrap error and Start Quiz as bootstrap = success
+  // TODO: setup back Button to navigate to main quiz menu
+  // TODO: style Buttons as Back = bootstrap error and Start Quiz as bootstrap = success
 
   return (
     <div>
@@ -19,19 +19,19 @@ export const KanaQuizCustomiseMenu = () => {
       </Row>
       <Row>
         <Col>
-          <button>10</button>
+          <Button variant="secondary">10</Button>
         </Col>
         <Col>
-          <button>20</button>
+          <Button variant="secondary">20</Button>
         </Col>
         <Col>
-          <button>40</button>
+          <Button variant="secondary">40</Button>
         </Col>
         <Col>
-          <button>80</button>
+          <Button variant="secondary">80</Button>
         </Col>
         <Col>
-          <button>10</button>
+          <Button variant="secondary">10</Button>
         </Col>
       </Row>
       <Row className="mt-5">
@@ -41,29 +41,29 @@ export const KanaQuizCustomiseMenu = () => {
       </Row>
       <Row>
         <Col>
-          <button>Locations</button>
+          <Button variant="secondary">Locations</Button>
         </Col>
         <Col>
-          <button>Foods</button>
+          <Button variant="secondary">Foods</Button>
         </Col>
         <Col>
-          <button>General Vocab</button>
+          <Button variant="secondary">General Vocab</Button>
         </Col>
         <Col>
-          <button>Names</button>
+          <Button variant="secondary">Names</Button>
         </Col>
         <Col>
-          <button>Random</button>
+          <Button variant="secondary">Random</Button>
         </Col>
       </Row>
       <Row className="mt-5">
         <Col></Col>
         <Col>
-          <button>Back</button>
+          <Button variant="danger">Back</Button>
         </Col>
         <Col></Col>
         <Col>
-          <button>Start Quiz</button>
+          <Button variant="primary">Start Quiz</Button>
         </Col>
         <Col></Col>
       </Row>
