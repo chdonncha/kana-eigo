@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 
 import { KanaQuiz } from './KanaQuiz';
@@ -36,13 +36,19 @@ export const KanaQuizMenu = () => {
             <Row className="mt-5">
               <Col></Col>
               <Col>
-                <button onClick={getQuickStartQuiz}>Quick Start</button>
+                <Button variant="secondary" onClick={getQuickStartQuiz}>
+                  Quick Start
+                </Button>
               </Col>
               <Col>
-                <button onClick={getRandomisedQuiz}>Randomise</button>
+                <Button variant="secondary" onClick={getRandomisedQuiz}>
+                  Randomise
+                </Button>
               </Col>
               <Col>
-                <button onClick={getCustomiseQuizMenu}>Customise</button>
+                <Button variant="secondary" onClick={getCustomiseQuizMenu}>
+                  Customise
+                </Button>
               </Col>
               <Col></Col>
             </Row>
