@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 
@@ -24,7 +24,7 @@ export const KanaQuiz = () => {
   // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
   // TODO: prevent repeated words showing up until reset
   // TODO: make enter key default to submit when typing
-  // TODO: prevent alert pushing button down (have padding there but alert hidden)
+  // TODO: prevent alert pushing Button down (have padding there but alert hidden)
   // TODO: add option to play timed version
   // TODO: pick quiz from category e.g. food, directions, locations etc..
   // TODO: add reverse translation quiz
@@ -199,7 +199,8 @@ export const KanaQuiz = () => {
             </Row>
             <Row>
               <Col>
-                <button
+                <Button
+                  variant="secondary"
                   id="submitAnswer"
                   className="mt-3"
                   onClick={(event) => {
@@ -207,8 +208,9 @@ export const KanaQuiz = () => {
                   }}
                 >
                   Submit Answer
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="secondary"
                   id="giveUp"
                   className="mt-3"
                   onClick={(event) => {
@@ -216,8 +218,9 @@ export const KanaQuiz = () => {
                   }}
                 >
                   Give Up
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="secondary"
                   id="giveUp"
                   className="mt-3"
                   onClick={(event) => {
@@ -225,7 +228,7 @@ export const KanaQuiz = () => {
                   }}
                 >
                   Skip
-                </button>
+                </Button>
               </Col>
             </Row>
             <Row className="mt-3">
