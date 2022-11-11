@@ -198,6 +198,19 @@ export const KanaQuiz = () => {
               </Col>
             </Row>
             <Row>
+              <Col></Col>
+              <Col>
+                <Button
+                  variant="secondary"
+                  id="giveUp"
+                  className="mt-3"
+                  onClick={(event) => {
+                    reset();
+                  }}
+                >
+                  Give Up
+                </Button>
+              </Col>
               <Col>
                 <Button
                   variant="secondary"
@@ -209,16 +222,8 @@ export const KanaQuiz = () => {
                 >
                   Submit Answer
                 </Button>
-                <Button
-                  variant="secondary"
-                  id="giveUp"
-                  className="mt-3"
-                  onClick={(event) => {
-                    reset();
-                  }}
-                >
-                  Give Up
-                </Button>
+              </Col>
+              <Col>
                 <Button
                   variant="secondary"
                   id="giveUp"
@@ -230,6 +235,7 @@ export const KanaQuiz = () => {
                   Skip
                 </Button>
               </Col>
+              <Col></Col>
             </Row>
             <Row className="mt-3">
               <Col>Current Score: {score}</Col>
