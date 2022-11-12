@@ -34,8 +34,10 @@ export const KanaQuiz = () => {
   // TODO: option to pick from 4 premade answers
   // TODO: create a customise menu page to select categories and the total question count
   // TODO: display romaji above each kana character on submit failure or success
-  // TODO: display english translation below the Kana on submit failure
   // TODO: add Sokuon (small kana) to the kana-eng json file
+  // TODO - BUG: english displays when you get a word wrong, but it displays for the next question,
+  //  should add an extra step to let you see the correct answer then press a proceed button to
+  //  continue to the next question
 
   const getData = () => {
     fetch('KanaEngData.json', {
