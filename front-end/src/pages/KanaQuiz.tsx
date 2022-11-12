@@ -32,6 +32,8 @@ export const KanaQuiz = () => {
   // TODO: score screen with percent, word display and tally on give up or completion
   // TODO: option to pick from 4 premade answers
   // TODO: create a customise menu page to select categories and the total question count
+  // TODO: display romaji above each kana character on submit failure or success
+  // TODO: display english translation below the Kana on submit failure
 
   const getData = () => {
     fetch('KanaEngData.json', {
