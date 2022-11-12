@@ -10,6 +10,7 @@ export const KanaQuiz = () => {
   const [randKanaObj, setRandKanaObj] = useState([]);
   //TODO: Consider creating a service to handle alert messages
   const [currentKana, setCurrentKana] = useState([]);
+  const [currentEng, setCurrentEng] = useState([]);
   const [showCorrect, setShowCorrect] = useState(false);
   const [showIncorrect, setShowIncorrect] = useState(false);
   const [showEmptyInput, setShowEmptyInput] = useState(false);
@@ -67,10 +68,13 @@ export const KanaQuiz = () => {
       // Select a key from the array of keys using the random index
       randObj = data[randIndex];
 
-      console.log(randObj);
-
       let kana = getKeyPairValue(Object.values(randObj));
+      let eng = getKeyPairValue(Object.keys(randObj));
+
+      console.log(eng);
+
       setCurrentKana(kana);
+      setCurrentEng(eng);
       setRandKanaObj(randObj);
     }
   }
@@ -151,6 +155,11 @@ export const KanaQuiz = () => {
             <Row>
               <Col>
                 <h3 className="mt-5">{currentKana}</h3>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <>{showIncorrect && <p>{currentEng}</p>}</>
               </Col>
             </Row>
             <Row>
