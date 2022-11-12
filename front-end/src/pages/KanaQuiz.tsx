@@ -34,7 +34,7 @@ export const KanaQuiz = () => {
   // TODO: create a customise menu page to select categories and the total question count
   // TODO: display romaji above each kana character on submit failure or success
   // TODO: display english translation below the Kana on submit failure
-  // TODO: add dakuten to the kana-eng json file
+  // TODO: add Sokuon (small kana) to the kana-eng json file
 
   const getData = () => {
     fetch('KanaEngData.json', {
