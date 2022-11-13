@@ -37,7 +37,8 @@ export const KanaQuiz = () => {
   // TODO: add Sokuon (small kana) to the kana-eng json file
   // TODO - BUG: english displays when you get a word wrong, but it displays for the next question,
   //  should add an extra step to let you see the correct answer then press a proceed button to
-  //  continue to the next question
+  //  continue to the next question - could change submit button text into "proceed" when a
+  //  wrong answer is submitted
   // TODO: add invisible padding when the display english answer isn't visible to prevent the page
   //  from being pushed down when the eng answer displays
 
@@ -162,9 +163,7 @@ export const KanaQuiz = () => {
               </Col>
             </Row>
             <Row>
-              <Col>
-                <>{showIncorrect && <p>{currentEng}</p>}</>
-              </Col>
+              <Col>{showIncorrect ? <p>{currentEng}</p> : <p style={{ opacity: 0 }}>.</p>}</Col>
             </Row>
             <Row>
               <Col className="alert">
