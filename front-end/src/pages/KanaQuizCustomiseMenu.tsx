@@ -26,6 +26,19 @@ export const KanaQuizCustomiseMenu = () => {
           </Row>
           <Row className="mt-5">
             <Col>
+              <p>Question Timer?</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button variant="secondary">Yes</Button>
+            </Col>
+            <Col>
+              <Button variant="secondary">No</Button>
+            </Col>
+          </Row>
+          <Row className="mt-5">
+            <Col>
               <p>Question Number</p>
             </Col>
           </Row>

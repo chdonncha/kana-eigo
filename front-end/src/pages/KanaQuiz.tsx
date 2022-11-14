@@ -39,8 +39,6 @@ export const KanaQuiz = () => {
   //  should add an extra step to let you see the correct answer then press a proceed button to
   //  continue to the next question - could change submit button text into "proceed" when a
   //  wrong answer is submitted
-  // TODO: add invisible padding when the display english answer isn't visible to prevent the page
-  //  from being pushed down when the eng answer displays
 
   const getData = () => {
     fetch('KanaEngData.json', {
