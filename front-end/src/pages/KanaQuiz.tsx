@@ -23,7 +23,6 @@ export const KanaQuiz = () => {
   const inputAnswerElement = document.getElementById('inputAnswer') as HTMLInputElement;
 
   // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
-  // TODO: prevent repeated words showing up until reset
   // TODO: make enter key default to submit when typing
   // TODO: prevent alert pushing Button down (have padding there but alert hidden)
   // TODO: add option to play timed version
@@ -31,14 +30,14 @@ export const KanaQuiz = () => {
   // TODO: add reverse translation quiz
   // TODO: allow user to pick how long they want the quiz to be before starting
   // TODO: score screen with percent, word display and tally on give up or completion
-  // TODO: option to pick from 4 premade answers
-  // TODO: create a customise menu page to select categories and the total question count
+  // TODO: option to pick from 4 randomised premade answers
   // TODO: display romaji above each kana character on submit failure or success
   // TODO: add Sokuon (small kana) to the kana-eng json file
   // TODO - BUG: english displays when you get a word wrong, but it displays for the next question,
   //  should add an extra step to let you see the correct answer then press a proceed button to
   //  continue to the next question - could change submit button text into "proceed" when a
   //  wrong answer is submitted
+  // TODO - BUG: The first word can be repeated twice (not initially deleted from the object)
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -66,10 +65,14 @@ export const KanaQuiz = () => {
   function getRandKana(data: any, setCurrentKana: any) {
     let randObj;
     if (data.length > 0) {
+      console.log(data);
       // Generate random index based on number of keys
       const randIndex = Math.floor(Math.random() * data.length);
       // Select a key from the array of keys using the random index
       randObj = data[randIndex];
+
+      // delete object property to prevent the same one appearing more than once
+      data.splice(randIndex, 1);
 
       let kana = getKeyPairValue(Object.values(randObj));
       let eng = getKeyPairValue(Object.keys(randObj));
