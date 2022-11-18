@@ -147,6 +147,12 @@ export const KanaQuiz = () => {
     (document.getElementById('inputAnswer') as HTMLInputElement).value = '';
   }
 
+  function handleKeyDown(event: any) {
+    if (event.key === 'Enter') {
+      processAnswer(data);
+    }
+  }
+
   // TODO: research into Render Props and disabling the previous prop without relying on IF's
   return (
     <Container fluid="md" className="text-center mt-5">
@@ -210,6 +216,7 @@ export const KanaQuiz = () => {
                   name="inputAnswer"
                   className="bg-light border mt-3"
                   autoComplete="off"
+                  onKeyDown={handleKeyDown}
                 ></input>
               </Col>
             </Row>
