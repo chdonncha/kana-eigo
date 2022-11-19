@@ -14,6 +14,7 @@ export const KanaQuiz = () => {
   const [showCorrect, setShowCorrect] = useState(false);
   const [showIncorrect, setShowIncorrect] = useState(false);
   const [showEmptyInput, setShowEmptyInput] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState(() => {
     return 0;
   });
@@ -104,6 +105,7 @@ export const KanaQuiz = () => {
     if (inputAnswerElement.value.length > 0) {
       checkCorrect() ? handleCorrectAnswer() : handleInCorrectAnswer();
       messageHelper(null, null, false);
+      setShowAnswer(false);
       clearInput();
       getRandKana(data, setCurrentKana);
     } else {
@@ -113,6 +115,7 @@ export const KanaQuiz = () => {
 
   function skipKana(data: any) {
     clearAllMessages();
+    setShowAnswer(false);
     getRandKana(data, setCurrentKana);
     setTotalAttempts((prevScore) => prevScore + 1);
   }
@@ -170,7 +173,7 @@ export const KanaQuiz = () => {
               </Col>
             </Row>
             <Row>
-              <Col>{showIncorrect ? <p>{currentEng}</p> : <p style={{ opacity: 0 }}>.</p>}</Col>
+              <Col>{showAnswer ? <p>{currentEng}</p> : <p style={{ opacity: 0 }}>.</p>}</Col>
             </Row>
             <Row>
               <Col className="alert">
@@ -265,6 +268,13 @@ export const KanaQuiz = () => {
             </Row>
             <Row>
               <Col>Questions Left: {totalAttempts} / 20</Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button variant="secondary" id="giveUp" className="mt-3" onClick={() => setShowAnswer(true)}>
+                  Show Answer
+                </Button>
+              </Col>
             </Row>
           </div>
         </>
