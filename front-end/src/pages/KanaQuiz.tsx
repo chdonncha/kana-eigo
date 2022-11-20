@@ -7,10 +7,12 @@ import { Results } from './Results';
 
 export const KanaQuiz = () => {
   const [data, setData] = useState([]);
+  const [kanaData, setKanaData] = useState([]);
   const [randKanaObj, setRandKanaObj] = useState([]);
   //TODO: Consider creating a service to handle alert messages
   const [currentKana, setCurrentKana] = useState([]);
   const [currentEng, setCurrentEng] = useState([]);
+  const [currentRomaji, setCurrentRomaji] = useState([]);
   const [showCorrect, setShowCorrect] = useState(false);
   const [showIncorrect, setShowIncorrect] = useState(false);
   const [showEmptyInput, setShowEmptyInput] = useState(false);
@@ -58,6 +60,25 @@ export const KanaQuiz = () => {
     getData();
   }, []);
 
+  const getRomaji = () => {
+    fetch('KanaEng.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        setKanaData(myJson);
+      });
+  };
+  useEffect(() => {
+    getData();
+    getRomaji();
+  }, []);
+
   if (currentKana.length === 0) {
     getRandKana(data, setCurrentKana);
   }
@@ -66,7 +87,6 @@ export const KanaQuiz = () => {
   function getRandKana(data: any, setCurrentKana: any) {
     let randObj;
     if (data.length > 0) {
-      console.log(data);
       // Generate random index based on number of keys
       const randIndex = Math.floor(Math.random() * data.length);
       // Select a key from the array of keys using the random index
@@ -77,9 +97,21 @@ export const KanaQuiz = () => {
 
       let kana = getKeyPairValue(Object.values(randObj));
       let eng = getKeyPairValue(Object.keys(randObj));
+      // console.log(kana);
 
-      console.log(eng);
+      let romajiStringBuilder = '';
 
+      for (let i = 0; i < kana.length; i++) {
+        kanaData.forEach(function (kanaObj) {
+          let romajiVal = getKeyPairValue(Object.values(kanaObj));
+          if (kana.charAt(i) === romajiVal) {
+            romajiStringBuilder += getKeyPairValue(Object.keys(kanaObj));
+          }
+        });
+      }
+
+      // @ts-ignore
+      setCurrentRomaji(romajiStringBuilder);
       setCurrentKana(kana);
       setCurrentEng(eng);
       setRandKanaObj(randObj);
@@ -168,8 +200,11 @@ export const KanaQuiz = () => {
               </Col>
             </Row>
             <Row>
+              <Col className="mt-5">{currentRomaji}</Col>
+            </Row>
+            <Row>
               <Col>
-                <h3 className="mt-5">{currentKana}</h3>
+                <h3>{currentKana}</h3>
               </Col>
             </Row>
             <Row>
