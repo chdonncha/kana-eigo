@@ -97,7 +97,6 @@ export const KanaQuiz = () => {
 
       let kana = getKeyPairValue(Object.values(randObj));
       let eng = getKeyPairValue(Object.keys(randObj));
-
       let currentRomaji = romajiStringBuilder(kana);
 
       // @ts-ignore
@@ -119,7 +118,6 @@ export const KanaQuiz = () => {
         }
       });
     }
-
     return currentRomaji;
   }
 
@@ -205,7 +203,7 @@ export const KanaQuiz = () => {
               </Col>
             </Row>
             <Row>
-              <Col className="mt-5">{currentRomaji}</Col>
+              <Col>{showAnswer ? <p>{currentRomaji}</p> : <p style={{ opacity: 0 }}>.</p>}</Col>
             </Row>
             <Row>
               <Col>
