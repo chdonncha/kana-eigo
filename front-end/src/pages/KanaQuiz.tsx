@@ -97,25 +97,30 @@ export const KanaQuiz = () => {
 
       let kana = getKeyPairValue(Object.values(randObj));
       let eng = getKeyPairValue(Object.keys(randObj));
-      // console.log(kana);
 
-      let romajiStringBuilder = '';
-
-      for (let i = 0; i < kana.length; i++) {
-        kanaData.forEach(function (kanaObj) {
-          let romajiVal = getKeyPairValue(Object.values(kanaObj));
-          if (kana.charAt(i) === romajiVal) {
-            romajiStringBuilder += getKeyPairValue(Object.keys(kanaObj));
-          }
-        });
-      }
+      let currentRomaji = romajiStringBuilder(kana);
 
       // @ts-ignore
-      setCurrentRomaji(romajiStringBuilder);
+      setCurrentRomaji(currentRomaji);
       setCurrentKana(kana);
       setCurrentEng(eng);
       setRandKanaObj(randObj);
     }
+  }
+
+  function romajiStringBuilder(kana: string) {
+    let currentRomaji = '';
+
+    for (let i = 0; i < kana.length; i++) {
+      kanaData.forEach(function (kanaObj) {
+        let romajiVal = getKeyPairValue(Object.values(kanaObj));
+        if (kana.charAt(i) === romajiVal) {
+          currentRomaji += getKeyPairValue(Object.keys(kanaObj));
+        }
+      });
+    }
+
+    return currentRomaji;
   }
 
   function getKeyPairValue(objVal: any) {
