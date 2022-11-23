@@ -41,6 +41,7 @@ export const KanaQuiz = () => {
   //  continue to the next question - could change submit button text into "proceed" when a
   //  wrong answer is submitted
   // TODO - BUG: The first word can be repeated twice (not initially deleted from the object)
+  // TODO: Add if possible logs for any errors
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -113,11 +114,23 @@ export const KanaQuiz = () => {
     for (let i = 0; i < kana.length; i++) {
       kanaData.forEach(function (kanaObj) {
         let romajiVal = getKeyPairValue(Object.values(kanaObj));
-        if (kana.charAt(i) === romajiVal) {
+        let yoonCheck = kana.charAt(i) + kana.charAt(i + 1);
+
+        if (yoonCheck === romajiVal) {
+          currentRomaji += getKeyPairValue(Object.keys(kanaObj));
+        } else if (kana.charAt(i) === romajiVal) {
           currentRomaji += getKeyPairValue(Object.keys(kanaObj));
         }
       });
     }
+
+    // invclude Sokuon into romaji
+    if (currentRomaji.indexOf('ッ') > -1) {
+      let index = currentRomaji.indexOf('ッ');
+      let replaceValue = currentRomaji.charAt(index + 1);
+      currentRomaji = currentRomaji.substring(0, index) + replaceValue + currentRomaji.substring(index + 1);
+    }
+
     return currentRomaji;
   }
 
