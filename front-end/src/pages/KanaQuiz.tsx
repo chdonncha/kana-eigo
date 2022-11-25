@@ -26,7 +26,6 @@ export const KanaQuiz = () => {
   const inputAnswerElement = document.getElementById('inputAnswer') as HTMLInputElement;
 
   // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
-  // TODO: make enter key default to submit when typing
   // TODO: prevent alert pushing Button down (have padding there but alert hidden)
   // TODO: add option to play timed version
   // TODO: pick quiz from category e.g. food, directions, locations etc..
@@ -34,12 +33,6 @@ export const KanaQuiz = () => {
   // TODO: allow user to pick how long they want the quiz to be before starting
   // TODO: score screen with percent, word display and tally on give up or completion
   // TODO: option to pick from 4 randomised premade answers
-  // TODO: display romaji above each kana character on submit failure or success
-  // TODO: add Sokuon (small kana) to the kana-eng json file
-  // TODO - BUG: english displays when you get a word wrong, but it displays for the next question,
-  //  should add an extra step to let you see the correct answer then press a proceed button to
-  //  continue to the next question - could change submit button text into "proceed" when a
-  //  wrong answer is submitted
   // TODO - BUG: The first word can be repeated twice (not initially deleted from the object)
   // TODO: Add if possible logs for any errors
 
