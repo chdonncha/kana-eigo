@@ -12,7 +12,7 @@ export const KanaQuiz = () => {
   //TODO: Consider creating a service to handle alert messages
   const [currentKana, setCurrentKana] = useState([]);
   const [currentEng, setCurrentEng] = useState([]);
-  const [currentRomaji, setCurrentRomaji] = useState([]);
+  const [currentRomaji, setCurrentRomaji] = useState('');
   const [showCorrect, setShowCorrect] = useState(false);
   const [showIncorrect, setShowIncorrect] = useState(false);
   const [showEmptyInput, setShowEmptyInput] = useState(false);
@@ -35,6 +35,7 @@ export const KanaQuiz = () => {
   // TODO: option to pick from 4 randomised premade answers
   // TODO - BUG: The first word can be repeated twice (not initially deleted from the object)
   // TODO: Add if possible logs for any errors
+  // TODO: setup AppContextInterface's
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -93,7 +94,6 @@ export const KanaQuiz = () => {
       let eng = getKeyPairValue(Object.keys(randObj));
       let currentRomaji = romajiStringBuilder(kana);
 
-      // @ts-ignore
       setCurrentRomaji(currentRomaji);
       setCurrentKana(kana);
       setCurrentEng(eng);
