@@ -117,14 +117,17 @@ export const KanaQuiz = () => {
       });
     }
 
-    // invclude Sokuon into romaji
+    SokuonToRomaji(currentRomaji);
+
+    return currentRomaji;
+  }
+
+  function SokuonToRomaji(currentRomaji: any) {
     if (currentRomaji.indexOf('ッ') > -1) {
       let index = currentRomaji.indexOf('ッ');
       let replaceValue = currentRomaji.charAt(index + 1);
       currentRomaji = currentRomaji.substring(0, index) + replaceValue + currentRomaji.substring(index + 1);
     }
-
-    return currentRomaji;
   }
 
   function getKeyPairValue(objVal: any) {
