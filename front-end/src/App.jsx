@@ -8,8 +8,6 @@ import { ErrorPage } from './pages/ErrorPage';
 import { Home } from './pages/Home';
 import { KanaQuizMenu } from './pages/KanaQuizMenu';
 
-// TODO: Convert app to use typescript
-
 export const App = () => {
   return (
     <>
