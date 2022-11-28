@@ -10,13 +10,20 @@ export const KanaQuiz = () => {
   const [kanaData, setKanaData] = useState([]);
   const [randKanaObj, setRandKanaObj] = useState([]);
   //TODO: Consider creating a service to handle alert messages
+
   const [currentKana, setCurrentKana] = useState([]);
   const [currentEng, setCurrentEng] = useState([]);
   const [currentRomaji, setCurrentRomaji] = useState('');
+
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertVariant, setAlertVariant] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+
   const [showCorrect, setShowCorrect] = useState(false);
   const [showIncorrect, setShowIncorrect] = useState(false);
   const [showEmptyInput, setShowEmptyInput] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
+
   const [score, setScore] = useState(() => {
     return 0;
   });
@@ -36,6 +43,7 @@ export const KanaQuiz = () => {
   // TODO - BUG: The first word can be repeated twice (not initially deleted from the object)
   // TODO: Add if possible logs for any errors
   // TODO: setup AppContextInterface's
+  // TODO: Set timer for Alerts to automatically fade out
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -148,7 +156,7 @@ export const KanaQuiz = () => {
   function processAnswer(data: any) {
     if (inputAnswerElement.value.length > 0) {
       checkCorrect() ? handleCorrectAnswer() : handleInCorrectAnswer();
-      messageHelper(null, null, false);
+      // messageHelper(false, false, false);
       setShowAnswer(false);
       clearInput();
       getRandKana(data, setCurrentKana);
@@ -181,9 +189,28 @@ export const KanaQuiz = () => {
   }
 
   function messageHelper(Correct: any, Incorrect: any, EmptyInput: any) {
-    if (Correct != null) setShowCorrect(Correct);
-    if (Incorrect != null) setShowIncorrect(Incorrect);
-    if (EmptyInput != null) setShowEmptyInput(EmptyInput);
+    if (!Correct && !Incorrect && !EmptyInput) {
+      setShowAlert(false);
+    }
+    if (Correct) {
+      setShowAlert(true);
+      setShowCorrect(Correct);
+      setAlertMessage('Correct!');
+      setAlertVariant('success');
+    }
+    if (Incorrect) {
+      console.log('Incorrect');
+      setShowAlert(true);
+      setShowIncorrect(Incorrect);
+      setAlertMessage('Incorrect Answer!');
+      setAlertVariant('danger');
+    }
+    if (EmptyInput) {
+      setShowAlert(true);
+      setShowEmptyInput(EmptyInput);
+      setAlertMessage('Cannot leave input empty');
+      setAlertVariant('danger');
+    }
   }
 
   function clearAllMessages() {
@@ -224,37 +251,19 @@ export const KanaQuiz = () => {
             </Row>
             <Row>
               <Col className="alert">
-                {!showEmptyInput && !showCorrect && !showIncorrect && (
+                {!showAlert && (
                   <Alert variant="light" style={{ opacity: 0 }}>
                     .
                   </Alert>
                 )}
                 <Alert
-                  show={showEmptyInput}
+                  id="showAlert"
+                  show={showAlert}
                   onClose={() => setShowEmptyInput(false)}
                   dismissible
-                  transition={false}
-                  variant={'danger'}
+                  variant={alertVariant}
                 >
-                  Cannot leave input empty
-                </Alert>
-                <Alert
-                  show={showCorrect}
-                  onClose={() => setShowCorrect(false)}
-                  dismissible
-                  transition={false}
-                  variant={'success'}
-                >
-                  Correct!
-                </Alert>
-                <Alert
-                  show={showIncorrect}
-                  onClose={() => setShowIncorrect(false)}
-                  dismissible
-                  transition={false}
-                  variant={'danger'}
-                >
-                  Incorrect Answer!
+                  {alertMessage}
                 </Alert>
               </Col>
             </Row>
