@@ -15,7 +15,7 @@ export const KanaQuiz = () => {
   const [currentEng, setCurrentEng] = useState([]);
   const [currentRomaji, setCurrentRomaji] = useState('');
 
-  const [alertMessage, setAlertMessage] = useState('');
+  const [alertMessage, setAlertMessage] = useState('.');
   const [alertVariant, setAlertVariant] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
@@ -44,6 +44,7 @@ export const KanaQuiz = () => {
   // TODO: Add if possible logs for any errors
   // TODO: setup AppContextInterface's
   // TODO: Set timer for Alerts to automatically fade out
+  // TODO: convert CSS to SASS
 
   const getData = () => {
     fetch('KanaEngData.json', {
@@ -251,20 +252,14 @@ export const KanaQuiz = () => {
             </Row>
             <Row>
               <Col className="alert">
-                {!showAlert && (
-                  <Alert variant="light" style={{ opacity: 0 }}>
-                    .
-                  </Alert>
-                )}
-                <Alert
-                  id="showAlert"
-                  show={showAlert}
-                  onClose={() => setShowEmptyInput(false)}
-                  dismissible
-                  variant={alertVariant}
-                >
-                  {alertMessage}
-                </Alert>
+                <div>
+                  <div
+                    className={`alert alert-${alertVariant} ${showAlert ? 'alert-shown' : 'alert-hidden'}`}
+                    onTransitionEnd={() => setShowAlert(false)}
+                  >
+                    {alertMessage}
+                  </div>
+                </div>
               </Col>
             </Row>
             <Row>
