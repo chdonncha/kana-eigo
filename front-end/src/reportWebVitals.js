@@ -1,4 +1,4 @@
-const reportWebVitals = (onPerfEntry) => {
+export const reportWebVitals = (onPerfEntry) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
       getCLS(onPerfEntry);
@@ -9,6 +9,3 @@ const reportWebVitals = (onPerfEntry) => {
     });
   }
 };
-
-// eslint-disable-next-line import/no-default-export
-export default reportWebVitals;
