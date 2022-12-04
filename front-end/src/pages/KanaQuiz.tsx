@@ -126,8 +126,7 @@ export const KanaQuiz = () => {
       });
     }
 
-    SokuonToRomaji(currentRomaji);
-
+    currentRomaji = SokuonToRomaji(currentRomaji);
     return currentRomaji;
   }
 
@@ -137,6 +136,7 @@ export const KanaQuiz = () => {
       let replaceValue = currentRomaji.charAt(index + 1);
       currentRomaji = currentRomaji.substring(0, index) + replaceValue + currentRomaji.substring(index + 1);
     }
+    return currentRomaji;
   }
 
   function getKeyPairValue(objVal: any) {
