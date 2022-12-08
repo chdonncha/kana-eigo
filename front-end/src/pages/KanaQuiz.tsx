@@ -44,6 +44,7 @@ export const KanaQuiz = () => {
   // TODO: setup AppContextInterface's
   // TODO: Set timer for Alerts to automatically fade out
   // TODO: convert CSS to SASS
+  // TODO: BUG - Romaji does not display on first Question when clicking "Show Answer"
 
   const getData = () => {
     fetch('KanaEngData.json', {
