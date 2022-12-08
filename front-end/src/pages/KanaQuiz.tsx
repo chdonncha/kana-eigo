@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
-import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 
 import { Results } from './Results';
@@ -200,7 +199,6 @@ export const KanaQuiz = () => {
       setAlertVariant('success');
     }
     if (Incorrect) {
-      console.log('Incorrect');
       setShowAlert(true);
       setShowIncorrect(Incorrect);
       setAlertMessage('Incorrect Answer!');
