@@ -42,9 +42,7 @@ export const KanaQuiz = () => {
   // TODO - BUG: The first word can be repeated twice (not initially deleted from the object)
   // TODO: Add if possible logs for any errors
   // TODO: setup AppContextInterface's
-  // TODO: Set timer for Alerts to automatically fade out
-  // TODO: convert CSS to SASS
-  // TODO: BUG - Romaji does not display on first Question when clicking "Show Answer"
+  // TODO: BUG - Romaji does not display on first Question when clicking "Show Answer" (issue is it's making a comparison based on the KanaEngData file which hasn't been yet fetched)
 
   const getData = () => {
     fetch('KanaEngData.json', {
