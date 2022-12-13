@@ -43,6 +43,7 @@ export const KanaQuiz = () => {
   // TODO: Add if possible logs for any errors
   // TODO: setup AppContextInterface's
   // TODO: BUG - Romaji does not display on first Question when clicking "Show Answer" (issue is it's making a comparison based on the KanaEngData file which hasn't been yet fetched)
+  // TODO: Look into using Redux library for handling reducer functions
 
   const getData = () => {
     fetch('KanaEngData.json', {
