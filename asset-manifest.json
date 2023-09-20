@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/kanaeigo/static/css/main.c95321ad.css",
+    "main.js": "/kanaeigo/static/js/main.f61144c2.js",
+    "static/js/787.22edae46.chunk.js": "/kanaeigo/static/js/787.22edae46.chunk.js",
+    "index.html": "/kanaeigo/index.html",
+    "main.c95321ad.css.map": "/kanaeigo/static/css/main.c95321ad.css.map",
+    "main.f61144c2.js.map": "/kanaeigo/static/js/main.f61144c2.js.map",
+    "787.22edae46.chunk.js.map": "/kanaeigo/static/js/787.22edae46.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c95321ad.css",
+    "static/js/main.f61144c2.js"
+  ]
+}
