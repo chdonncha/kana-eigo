@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
   return (
@@ -61,11 +62,11 @@ export const Home = () => {
       <div className="mt-5 mb-5  container">
         <div className="row text-center">
           <div className="col">
-            <a href="/kanaquiz">
+            <Link to="/kanaquiz">
               <button type="button" className="btn btn-primary">
                 Take Quiz
               </button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
