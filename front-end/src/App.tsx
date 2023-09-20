@@ -16,6 +16,7 @@ function App() {
           <NavbarComponent />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/kanaeigo" element={<Home />} />
             <Route path="/kanaquiz" element={<KanaQuizMenu />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
