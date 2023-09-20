@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/KanaEigo/static/css/main.c95321ad.css",
-    "main.js": "/KanaEigo/static/js/main.4c5aee82.js",
-    "static/js/787.22edae46.chunk.js": "/KanaEigo/static/js/787.22edae46.chunk.js",
+    "main.css": "/KanaEigo/static/css/main.7d7c7b54.css",
+    "main.js": "/KanaEigo/static/js/main.dd9606c6.js",
     "index.html": "/KanaEigo/index.html",
-    "main.c95321ad.css.map": "/KanaEigo/static/css/main.c95321ad.css.map",
-    "main.4c5aee82.js.map": "/KanaEigo/static/js/main.4c5aee82.js.map",
-    "787.22edae46.chunk.js.map": "/KanaEigo/static/js/787.22edae46.chunk.js.map"
+    "main.7d7c7b54.css.map": "/KanaEigo/static/css/main.7d7c7b54.css.map",
+    "main.dd9606c6.js.map": "/KanaEigo/static/js/main.dd9606c6.js.map"
   },
   "entrypoints": [
-    "static/css/main.c95321ad.css",
-    "static/js/main.4c5aee82.js"
+    "static/css/main.7d7c7b54.css",
+    "static/js/main.dd9606c6.js"
   ]
 }
