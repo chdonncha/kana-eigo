@@ -18,6 +18,9 @@
       <a href="#future-features">Future Features</a>
     </li>
     <li>
+      <a href="#deployment">Deployment</a>
+    </li>
+    <li>
       <a href="#wireframes">Wireframes</a>
     </li>
   </ol>
@@ -45,6 +48,10 @@ Build project:
 Serve on localhost:
 
 `npm start`
+
+# Deployment
+
+Publish to Gitpages via "gh-pages" package using `npm run deploy` 
 
 # Future Features
 
