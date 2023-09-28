@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/KanaEigo/static/css/main.7d7c7b54.css",
-    "main.js": "/KanaEigo/static/js/main.bb00e252.js",
-    "index.html": "/KanaEigo/index.html",
-    "main.7d7c7b54.css.map": "/KanaEigo/static/css/main.7d7c7b54.css.map",
-    "main.bb00e252.js.map": "/KanaEigo/static/js/main.bb00e252.js.map"
+    "main.css": "/kana-eigo/static/css/main.7d7c7b54.css",
+    "main.js": "/kana-eigo/static/js/main.bb00e252.js",
+    "index.html": "/kana-eigo/index.html",
+    "main.7d7c7b54.css.map": "/kana-eigo/static/css/main.7d7c7b54.css.map",
+    "main.bb00e252.js.map": "/kana-eigo/static/js/main.bb00e252.js.map"
   },
   "entrypoints": [
     "static/css/main.7d7c7b54.css",
