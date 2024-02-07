@@ -65,6 +65,3 @@ attempting the questions page example:
 
 positive / negative response example:
 ![image](https://user-images.githubusercontent.com/8567795/178804439-cb46f37e-9ad1-48bf-b584-6e42dfd2b1ac.png)
-
-# TODO
-- [ ] - Look into implementing **Yip** form validator
