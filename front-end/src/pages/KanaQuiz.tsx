@@ -148,20 +148,29 @@ export const KanaQuiz = () => {
   }
 
   function checkCorrect() {
-    let inputValue = inputAnswerElement.value;
-    let eng = getKeyPairValue(Object.keys(randKanaObj));
-    return eng.toLowerCase() === inputValue.toLowerCase();
+    let inputValue = inputAnswerElement.value.trim().toLowerCase();
+    let correctAnswer = getKeyPairValue(Object.keys(randKanaObj)).toLowerCase();
+    return correctAnswer === inputValue;
   }
 
   function processAnswer(data: any) {
-    if (inputAnswerElement.value.length > 0) {
-      checkCorrect() ? handleCorrectAnswer() : handleInCorrectAnswer();
-      // messageHelper(false, false, false);
+    if (showAnswer) {
       setShowAnswer(false);
       clearInput();
       getRandKana(data, setCurrentKana);
     } else {
-      messageHelper(false, false, true);
+      if (inputAnswerElement.value.length > 0) {
+        const isCorrect = checkCorrect();
+        if (isCorrect) {
+          handleCorrectAnswer();
+          getRandKana(data, setCurrentKana);
+        } else {
+          handleInCorrectAnswer();
+        }
+        clearInput();
+      } else {
+        messageHelper(false, false, true);
+      }
     }
   }
 
@@ -179,6 +188,7 @@ export const KanaQuiz = () => {
   }
 
   function handleInCorrectAnswer() {
+    setShowAnswer(true);
     messageHelper(false, true, false);
     setTotalAttempts((prevScore) => prevScore + 1);
   }
@@ -295,7 +305,7 @@ export const KanaQuiz = () => {
                     processAnswer(data);
                   }}
                 >
-                  Submit Answer
+                  Continue
                 </Button>
               </Col>
               <Col>
