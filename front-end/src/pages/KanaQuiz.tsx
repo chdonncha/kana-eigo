@@ -199,27 +199,26 @@ export const KanaQuiz = () => {
   }
 
   function messageHelper(Correct: any, Incorrect: any, EmptyInput: any) {
-    if (!Correct && !Incorrect && !EmptyInput) {
-      setShowAlert(false);
-    }
+    setShowCorrect(Correct);
+    setShowIncorrect(Incorrect);
+    setShowEmptyInput(EmptyInput);
+
     if (Correct) {
-      setShowAlert(true);
-      setShowCorrect(Correct);
       setAlertMessage('Correct!');
       setAlertVariant('success');
-    }
-    if (Incorrect) {
-      setShowAlert(true);
-      setShowIncorrect(Incorrect);
+    } else if (Incorrect) {
       setAlertMessage('Incorrect Answer!');
       setAlertVariant('danger');
-    }
-    if (EmptyInput) {
-      setShowAlert(true);
-      setShowEmptyInput(EmptyInput);
+    } else if (EmptyInput) {
       setAlertMessage('Cannot leave input empty');
       setAlertVariant('danger');
     }
+
+    setShowAlert(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 1000);
   }
 
   function clearAllMessages() {
