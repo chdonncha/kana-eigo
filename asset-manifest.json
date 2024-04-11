@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/kana-eigo/static/css/main.7d7c7b54.css",
-    "main.js": "/kana-eigo/static/js/main.bb00e252.js",
+    "main.js": "/kana-eigo/static/js/main.d8591512.js",
     "index.html": "/kana-eigo/index.html",
     "main.7d7c7b54.css.map": "/kana-eigo/static/css/main.7d7c7b54.css.map",
-    "main.bb00e252.js.map": "/kana-eigo/static/js/main.bb00e252.js.map"
+    "main.d8591512.js.map": "/kana-eigo/static/js/main.d8591512.js.map"
   },
   "entrypoints": [
     "static/css/main.7d7c7b54.css",
-    "static/js/main.bb00e252.js"
+    "static/js/main.d8591512.js"
   ]
 }
