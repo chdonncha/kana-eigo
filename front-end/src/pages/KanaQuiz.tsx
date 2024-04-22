@@ -31,20 +31,6 @@ export const KanaQuiz = () => {
   });
   const inputAnswerElement = document.getElementById('inputAnswer') as HTMLInputElement;
 
-  // TODO: Look into shouldComponentUpdate() to prevent unneeded re-renders
-  // TODO: prevent alert pushing Button down (have padding there but alert hidden)
-  // TODO: add option to play timed version
-  // TODO: pick quiz from category e.g. food, directions, locations etc..
-  // TODO: add reverse translation quiz
-  // TODO: allow user to pick how long they want the quiz to be before starting
-  // TODO: score screen with percent, word display and tally on give up or completion
-  // TODO: option to pick from 4 randomised premade answers
-  // TODO - BUG: The first word can be repeated twice (not initially deleted from the object)
-  // TODO: Add if possible logs for any errors
-  // TODO: setup AppContextInterface's
-  // TODO: BUG - Romaji does not display on first Question when clicking "Show Answer" (issue is it's making a comparison based on the KanaEngData file which hasn't been yet fetched)
-  // TODO: Look into using Redux library for handling reducer functions
-
   const getData = () => {
     fetch('KanaEngData.json', {
       headers: {
