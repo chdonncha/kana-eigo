@@ -1,16 +1,16 @@
 module.exports = {
   extends: [
     "react-app",
-    "react-app/jest"
+    "react-app/jest",
   ],
   settings: {
     react: {
-      version: "detect"
-    }
+      version: "detect",
+    },
   },
   env: {
     browser: true,
-    jest: true
+    jest: true,
   },
   rules: {
     "semi": [2, "always"],
@@ -21,8 +21,8 @@ module.exports = {
         "objects": "always-multiline",
         "imports": "always-multiline",
         "exports": "always-multiline",
-        "functions": "never"
-      }
+        "functions": "never",
+      },
     ],
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
@@ -33,12 +33,12 @@ module.exports = {
       {
         "allowShortCircuit": true,
         "allowTernary": true,
-        "allowTaggedTemplates": true
-      }
+        "allowTaggedTemplates": true,
+      },
     ],
     "@typescript-eslint/no-unused-vars": ["warn", {
       "ignoreRestSiblings": true,
-      "argsIgnorePattern": "^_"
+      "argsIgnorePattern": "^_",
     }],
     "react/prop-types": "off",
     "react/display-name": "off",
@@ -49,9 +49,9 @@ module.exports = {
       "groups": ["builtin", "external", ["parent", "sibling"], "index"],
       "alphabetize": {
         "order": "asc",
-        "caseInsensitive": true
-      }
+        "caseInsensitive": true,
+      },
     }],
-    "import/no-default-export": "error"
-  }
+    "import/no-default-export": "error",
+  },
 };
